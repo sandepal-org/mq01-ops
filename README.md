@@ -921,12 +921,12 @@ See how:
 ## Deploy `mq01-argo` to the cluster
 
 Let's deploy this ArgoCD application to the cluster. We use the `envsubst`
-command to replace $GITORG with your GitHub organisation.
+command to replace $GITORG with your GitHub organization.
 
 Issue the following command:
 
 ```bash
-envsubst < environments/dev/argocd/mq01.yaml > environments/dev/argocd/mq01.yaml
+envsubst < environments/dev/argocd/mq01.yaml >> environments/dev/argocd/mq01.yaml
 oc apply -f environments/dev/argocd/mq01.yaml
 ```
 
