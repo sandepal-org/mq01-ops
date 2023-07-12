@@ -13,7 +13,7 @@ In this tutorial, you will:
 3. Install ArgoCD to manage the continuous deployment of MQ-related
    resources to the cluster.
 4. Create a source Git repository that holds the MQ development artifacts
-   for a virtual MQ appliance.
+   for a queue manager.
 5. Install Tekton to provide continuous integration of the source MQ
    artifacts. These pipeline ensures that all changes to these artifacts are
    successful built, packaged, versioned and tested before they are delivered
@@ -34,9 +34,9 @@ The following diagram shows a CICD pipeline for MQ:
 Notice:
 
 - The git repository `mq01-src` holds the source development artifacts for a
-  virtual MQ appliance `mq01`.
+  queue manage `mq01`.
 - A Tekton pipeline uses the `mq01-src` repository to build, package, test,
-  version and deliver resources that define the `mq01` MQ appliance.
+  version and deliver resources that define the `mq01` queue manager.
 - If the pipeline is successful, then the YAMLs that define `mq01` are stored in
   the operational repository `mq01-ops` and the container image for `mq01` is
   stored in an image registry.
@@ -51,7 +51,7 @@ configuration:
 - Step 2: Move to [these
   instructions](https://github.com/mq-modernization-demo/mq01-src#readme) to create the
   `mq01-src` repository, run a Tekton pipeline to populate the `mq01-ops`
-  repository, and interact with the new or updated MQ appliance `mq01`.
+  repository, and interact with the new or updated queue manager `mq01`.
 
 ---
 
@@ -517,9 +517,9 @@ label to every resource it deploys to the cluster.
 ## Role and role binding
 
 ArgoCD requires permission to create resources in the `mq01-dev` namespace. We
-use a role to define the resources required to deploy a MQ virtual
-appliance, and a role binding to associate this role with the `serviceaccount`
-associated with ArgoCD.
+use a role to define the resources required to deploy a queue manager, and a
+role binding to associate this role with the `serviceaccount` associated with
+ArgoCD.
 
 Issue the following command to create this `role`:
 
@@ -849,14 +849,14 @@ Allow Tekton to write to image registry
 
 ```bash
 // oc adm policy  add-cluster-role-to-user edit system:serviceaccount:mq01-ci:pipeline // not sure we need this?
-oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-MQ-pod-service-account --namespace=mq01-ci
+oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-mq-pod-service-account --namespace=mq01-ci
 ```
 ---
 
 ## An ArgoCD application to manage `mq01`
 
-Finally, we're going to create an ArgoCD application to manage the virtual
-appliance `mq01`. The YAMLs for `mq01` will be created by its Tekton pipeline in
+Finally, we're going to create an ArgoCD application to manage the queue manager
+`mq01`. The YAMLs for `mq01` will be created by its Tekton pipeline in
 `mq01-ops`. Every time this repository is updated, our ArgoCD application will
 ensure that the latest version of `mq01` is deployed to the cluster.
 
@@ -985,10 +985,9 @@ folder with the YAMLs for the `mq01` queue manager.
 
 You've configured your cluster for MQ. Let's run a pipeline to populate
 the `mq01-ops` repository. This pipeline is held in the source repository
-`mq01-src`; it also holds the configuration for the `mq01` virtual MQ
-appliance.
+`mq01-src`; it also holds the configuration for the `mq01` queue manager.
 
-Continue [here](https://github.com/MQ-virtual-appliance-demo/mq01-src#introduction) to fork
+Continue [here](https://github.com/mq-modernization-demo/mq01-src#introduction) to fork
 your copy of the `mq01-src` repository.
 
 ---
