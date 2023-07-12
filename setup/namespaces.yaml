@@ -1,13 +1,13 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: dp01-ci
+  name: mq01-ci
   labels:
-    name: dp01-ci
----    
+    name: mq01-ci
+---
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: dp01-dev
+  name: mq01-dev
   labels:
-    name: dp01-dev
+    name: mq01-dev

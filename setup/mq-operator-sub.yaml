@@ -2,13 +2,13 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
-    operators.coreos.com/datapower-operator.dp01-ns: ''
-  name: datapower-operator
+    operators.coreos.com/mq-operator.mq01-ns: ''
+  name: mq-operator
   namespace: openshift-operators
 spec:
   channel: v1.6
   installPlanApproval: Manual
-  name: datapower-operator
+  name: mq-operator
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
-  startingCSV: datapower-operator.v1.6.8
+  startingCSV: mq-operator.v2.4.0

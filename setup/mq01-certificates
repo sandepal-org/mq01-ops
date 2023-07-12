@@ -1,20 +1,20 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: dp01-secret1
-  namespace: dp01-dev
+  name: mq01-secret1
+  namespace: mq01-dev
 spec:
   dnsNames:
     - dummy.domain.com
   type: opaque
-  secretName: dp01-booking-service-secret1
+  secretName: mq01-booking-service-secret1
   issuerRef:
-    name: datapower-selfsigned-issuer
+    name: mq-selfsigned-issuer
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   subject:
     organizations:
-      - datapower-org
+      - mq-org
   # The use of the common name field has been deprecated since 2000 and is
   # discouraged from being used.
   commonName: dummy.domain.com
