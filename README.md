@@ -1,9 +1,9 @@
 ## Overview
 
-This tutorial demonstrates a platform engineering approach to MQ
-development and deployment. It demonstrates continuous integration, continuous
-deployment, GitOps, Infrastructure as Code and DevOps using containers,
-Kubernetes and a set of popular cloud native tools such as ArgoCD and Tekton.
+This tutorial demonstrates a platform engineering approach to MQ development and
+deployment. It demonstrates continuous integration, continuous deployment,
+GitOps, Infrastructure as Code and DevOps using containers, Kubernetes and a set
+of popular cloud native tools such as ArgoCD and Tekton.
 
 In this tutorial, you will:
 
@@ -14,10 +14,10 @@ In this tutorial, you will:
    resources to the cluster.
 4. Create a source Git repository that holds the MQ development artifacts
    for a queue manager.
-5. Install Tekton to provide continuous integration of the source MQ
-   artifacts. These pipeline ensures that all changes to these artifacts are
-   successful built, packaged, versioned and tested before they are delivered
-   into the operational repository, read for deployment.
+5. Install Tekton to provide continuous integration of the source MQ artifacts.
+   These pipeline ensures that all changes to these artifacts are successful
+   built, packaged, versioned and tested before they are delivered into the
+   operational repository, read for deployment.
 6. Gain experience with the IBM-supplied MQ operator and container.
 
 By the end of the tutorial, you will have practical experience and knowledge of
@@ -64,7 +64,7 @@ Minikube.
 
 ## Install Kubernetes CLI
 
-To interact with your cluster from your local machine, you will need to use the 
+To interact with your cluster from your local machine, you will need to use the
 `kubectl` or `oc` command line interface.
 
 Add instructions to install `kubectl` or `oc` CLI.
@@ -196,7 +196,8 @@ create `mq01-ops` in our new organization. Forking a template creates a
 repository with a clean git history, allowing us to track the history of changes
 to our cluster every time we update `mq01-ops`.
 
-<br> Click on [this URL](https://github.com/mq-modernization-demo/mq01-ops/generate) to fork from
+<br> Click on [this
+URL](https://github.com/mq-modernization-demo/mq01-ops/generate) to fork from
 the `mq01-ops` template repository:
 
 <img src="./docs/images/diagram11.png" alt="drawing" width="800"/>
@@ -223,7 +224,10 @@ organization.
 
 ## Enable Personal Access Tokens for your new organization
 
-To allow sufficient, but limited, access the repositories in our new Git organization, we use a [Personal Access Token ](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (**PAT**). First, we must enable this feature using the GitHub web.
+To allow sufficient, but limited, access the repositories in our new Git
+organization, we use a [Personal Access Token
+](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+(**PAT**). First, we must enable this feature using the GitHub web.
 
 Issue the following command:
 
@@ -239,17 +243,18 @@ Select the following options via their radio buttons:
 
 1. Select `Allow access via fine-grained personal access tokens` and hit `Continue`
 2. Select `Do not require administrator approval` and hit `Continue`
-3. Select `Allow access via personal access tokens (classic)` and hit `Continue` 
-4. Complete the process and hit `Enroll` to enable PATs for your organization 
+3. Select `Allow access via personal access tokens (classic)` and hit `Continue`
+4. Complete the process and hit `Enroll` to enable PATs for your organization
 
 Personal Access Tokens are now enabled for your GitHub organization.
 
 ## Create Personal Access Token for GitHub access
 
-We now create a PAT to limit access to only repositories in the new GitHub organization. 
-This token will be used by the tutorial CLI and Tekton service account, thereby limiting 
-exposure of your other GitHub resources; this is a nice example of **Zero Trust** security, 
-limiting access to only what's required.
+We now create a PAT to limit access to only repositories in the new GitHub
+organization. This token will be used by the tutorial CLI and Tekton service
+account, thereby limiting exposure of your other GitHub resources; this is a
+nice example of **Zero Trust** security, limiting access to only what's
+required.
 
 Navigate to https://github.com/settings/tokens?type=beta in your Browser:
 
@@ -264,9 +269,10 @@ Complete the page as follows:
 5. Under `Repository permissions` select:
    * `Contents`: `Read and write`
    * `Pull requests` : `Read and write`
-6. (No changes under `Organization permissions`)   
+6. (No changes under `Organization permissions`)
 
-Click on `Generate token` to create a PAT which has the above access encoded within it.
+Click on `Generate token` to create a PAT which has the above access encoded
+within it.
 
 <img src="./docs/images/diagram16.png" alt="drawing" width="800"/>
 
@@ -281,8 +287,8 @@ In the meantime, we're going to store in an environment variable.
 export GITTOKEN=<PAT copied from GitHub>
 ```
 
-Let's now use this token to create our own copies of the `mq01-src` and `mq01-ops` 
-repositories.
+Let's now use this token to create our own copies of the `mq01-src` and
+`mq01-ops` repositories.
 
 ---
 
@@ -324,10 +330,10 @@ namespace/mq01-dev created
 ```
 
 As the tutorial proceeds, we'll see how the YAMLs in `mq01-ops` **fully** define
-the MQ related resources deployed to the cluster. In fact, we're going to
-set up the cluster such that it is **automatically** updated whenever the `mq01-ops`
-repository is updated. This concept is called **continuous deployment** and we'll
-use ArgoCD to achieve it.
+the MQ related resources deployed to the cluster. In fact, we're going to set up
+the cluster such that it is **automatically** updated whenever the `mq01-ops`
+repository is updated. This concept is called **continuous deployment** and
+we'll use ArgoCD to achieve it.
 
 ---
 
@@ -460,7 +466,8 @@ ArgoCD will now install; this may take a few minutes.
 A
 [ClusterServiceVersion](https://olm.operatorframework.io/docs/concepts/crds/clusterserviceversion/)
 (CSV) is created for each release of the ArgoCD operator installed in the
-cluster. This tells Operator Lifecycle Manager how to deploy and run the operator.
+cluster. This tells Operator Lifecycle Manager how to deploy and run the
+operator.
 
 We can verify that the installation has completed successfully by examining the
 CSV for ArgoCD.
@@ -491,7 +498,8 @@ here; feel free to examine it.
 
 ArgoCD will deploy `mq01` and its related resources to the cluster. These
 resources are labelled by ArgoCD with a specific `applicationInstanceLabelKey`
-so that they can be tracked for configuration drift. The default label used by ArgoCD collides with MQ operator, so we need to change it.
+so that they can be tracked for configuration drift. The default label used by
+ArgoCD collides with MQ operator, so we need to change it.
 
 Issue the following command to change the `applicationInstanceLabelKey`used by
 ArgoCD:
@@ -812,7 +820,9 @@ oc describe csv openshift-pipelines-operator-rh.vx.y.z -n openshift-operators
 
 ## Create a secret to contain the PAT for use by Tekton.
 
-The PAT we created earlier is now stored as a secret in the `mq01-ci` namespace and used by the pipeline whenever it needs to access the `mq01-src` and `mq01-ops` repositories.
+The PAT we created earlier is now stored as a secret in the `mq01-ci` namespace
+and used by the pipeline whenever it needs to access the `mq01-src` and
+`mq01-ops` repositories.
 
 Issue the following command to create a secret containing the PAT:
 
@@ -913,8 +923,9 @@ resources to deploy to the cluster:
 ```
 
 See how:
-  - `repoURL: https://github.com/$GITORG/mq01-ops.git` identifies the
-    repository where the YAMLs are located ($GITORG will be replaced with your GitHub organisation)
+  - `repoURL: https://github.com/$GITORG/mq01-ops.git` identifies the repository
+    where the YAMLs are located ($GITORG will be replaced with your GitHub
+    organization)
   - `targetRevision: main` identifies the branch within the repository
   - `path: environments/dev/mq01/` identifies the folder within the repository
 
@@ -955,7 +966,7 @@ which will return a URL similar to this:
 https://openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com
 ```
 
-We will use this URL to log into the ArgoCD admin console to view our deployments. 
+We will use this URL to log into the ArgoCD admin console to view our deployments.
 
 Issue the following command to determine the ArgoCD `password` for the `admin`
 user:
@@ -967,9 +978,10 @@ oc extract secret/openshift-gitops-cluster -n openshift-gitops --keys="admin.pas
 Login to ArgoCD with `admin` and `password`.
 
 > **Note**<br>
-> 
-> If DNS name resolution has not been set up for your cluster hostname, you will need
-> to add the URL hostname to your local machine  `/etc/hosts` file to identify the IP address of the ArgoCD server, e.g.:
+>
+> If DNS name resolution has not been set up for your cluster hostname, you will
+> need to add the URL hostname to your local machine  `/etc/hosts` file to
+> identify the IP address of the ArgoCD server, e.g.:
 >
 > `141.125.162.227 openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com`
 
