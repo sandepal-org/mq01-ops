@@ -710,8 +710,8 @@ oc get clusterserviceversion ibm-mq.v2.4.0 -n openshift-operators
 ```
 
 ```bash
-NAME                                     DISPLAY                       VERSION   REPLACES                                          PHASE
-ibm-mq.v2.4.0                IBM MQ Gateway         2.4.0                                                       Succeeded
+NAME            DISPLAY   VERSION   REPLACES   PHASE
+ibm-mq.v2.4.0   IBM MQ    2.4.0                Succeeded
 ```
 
 which shows that the 2.4.0 version of the operator has been successfully installed.
@@ -847,10 +847,15 @@ oc patch serviceaccount pipeline \
 
 Allow Tekton to write to image registry
 
+
 ```bash
-// oc adm policy  add-cluster-role-to-user edit system:serviceaccount:mq01-ci:pipeline // not sure we need this?
 oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-mq-pod-service-account --namespace=mq01-ci
 ```
+
+```bash
+// oc adm policy  add-cluster-role-to-user edit system:serviceaccount:mq01-ci:pipeline // not sure we need this?
+```
+
 ---
 
 ## An ArgoCD application to manage `mq01`
