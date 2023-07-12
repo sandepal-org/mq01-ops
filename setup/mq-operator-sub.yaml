@@ -11,4 +11,4 @@ spec:
   name: mq-operator
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
-  startingCSV: mq-operator.v2.4.0
+  startingCSV: ibm-mq.v2.4.0

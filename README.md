@@ -706,18 +706,18 @@ Again, feel free to verify the MQ installation with the following
 commands:
 
 ```bash
-oc get clusterserviceversion mq-operator.v2.4.0 -n openshift-operators
+oc get clusterserviceversion ibm-mq.v2.4.0 -n openshift-operators
 ```
 
 ```bash
 NAME                                     DISPLAY                       VERSION   REPLACES                                          PHASE
-mq-operator.v2.4.0                IBM MQ Gateway         2.4.0                                                       Succeeded
+ibm-mq.v2.4.0                IBM MQ Gateway         2.4.0                                                       Succeeded
 ```
 
 which shows that the 2.4.0 version of the operator has been successfully installed.
 
 ```bash
-oc describe csv mq-operator.v2.4.0 -n openshift-operators
+oc describe csv ibm-mq.v2.4.0 -n openshift-operators
 ```
 
 The output provides an extensive amount of information not listed
