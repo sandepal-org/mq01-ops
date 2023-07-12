@@ -42,7 +42,7 @@ Notice:
   stored in an image registry.
 - Shortly after the changes are committed to the git repository, an ArgoCD
   application detects the updated YAMLs. It applies them to the cluster to create or
-  update a running `mq01` MQ queue manager.
+  update a running queue manager, `mq01`.
 
 This tutorial will walk you through the process of setting up this
 configuration:
@@ -381,7 +381,7 @@ During this tutorial, we'll see how:
 - the `mq01-ci` namespace is used to store specific Kubernetes resources to
   build, package, version and test `mq01`.
 - the `mq01-dev` namespace is used to store specific Kubernetes resources
-  relating to a running MQ queue manager, `mq01`.
+  relating to a running queue manager, `mq01`.
 
 ---
 
@@ -575,7 +575,7 @@ See how ArgoCD can now control `secrets`, `services`, `MQservices` and
 
 ## Add IBM catalog sources
 
-Like ArgoCD, there is a dedicated operator that manages MQ queue managers in
+Like ArgoCD, there is a dedicated operator that manages queue managers in
 the cluster. Unlike ArgoCD, its definition is held in the IBM [catalog
 source](https://olm.operatorframework.io/docs/concepts/crds/catalogsource/), so
 we need to add this catalog source to the cluster before we can install it.
@@ -650,7 +650,7 @@ oc apply -f setup/mq-operator-sub.yaml
 which will create the MQ operator subscription:
 
 ```bash
-subscription.operators.coreos.com/MQ-operator created
+subscription.operators.coreos.com/mq-operator created
 ```
 
 Explore the subscription using the following command:
@@ -666,16 +666,16 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
-    operators.coreos.com/MQ-operator.mq01-ns: ''
-  name: MQ-operator
+    operators.coreos.com/mq-operator.mq01-ns: ''
+  name: mq-operator
   namespace: openshift-operators
 spec:
-  channel: v1.6
+  channel: v2.4
   installPlanApproval: Manual
-  name: MQ-operator
+  name: mq-operator
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
-  startingCSV: MQ-operator.v1.6.8
+  startingCSV: mq-operator.v2.4.0
 ```
 
 Notice how this operator is installed in the `openshift-operators` namespace.
@@ -687,7 +687,7 @@ version of the MQ operator to be installed.
 Let's find our MQ install plan and approve it.
 
 ```bash
-oc get installplan -n openshift-operators | grep "MQ-operator" | awk '{print $1}' | \
+oc get installplan -n openshift-operators | grep "mq-operator" | awk '{print $1}' | \
 xargs oc patch installplan \
  --namespace openshift-operators \
  --type merge \
@@ -706,18 +706,18 @@ Again, feel free to verify the MQ installation with the following
 commands:
 
 ```bash
-oc get clusterserviceversion MQ-operator.v1.6.8 -n openshift-operators
+oc get clusterserviceversion mq-operator.v2.4.0 -n openshift-operators
 ```
 
 ```bash
 NAME                                     DISPLAY                       VERSION   REPLACES                                          PHASE
-MQ-operator.v1.6.8                IBM MQ Gateway         1.6.8                                                       Succeeded
+mq-operator.v2.4.0                IBM MQ Gateway         2.4.0                                                       Succeeded
 ```
 
-which shows that the 1.6.8 version of the operator has been successfully installed.
+which shows that the 2.4.0 version of the operator has been successfully installed.
 
 ```bash
-oc describe csv MQ-operator.v1.6.8 -n openshift-operators
+oc describe csv mq-operator.v2.4.0 -n openshift-operators
 ```
 
 The output provides an extensive amount of information not listed

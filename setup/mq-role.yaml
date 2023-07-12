@@ -8,7 +8,7 @@ rules:
   resources: ["secrets", "services"]
   verbs: ["*"]
 - apiGroups: ["mq.ibm.com"] # mq.ibm.com API group - TBC
-  resources: ["mqservices"] # TBC
+  resources: ["queuemanagers"] # TBC
   verbs: ["*"]
 - apiGroups: ["networking.k8s.io"] # Kubernetes networking group
   resources: ["ingresses"]
