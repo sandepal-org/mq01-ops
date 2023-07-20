@@ -29,7 +29,7 @@ platform engineering with MQ in a Kubernetes environment.
 
 The following diagram shows a CICD pipeline for MQ:
 
-![diagram1](./docs/images/diagram1.drawio.png)
+![diagram1](./xdocs/images/diagram1.drawio.png)
 
 Notice:
 
@@ -110,7 +110,7 @@ to create a new organization:
 
 <br> You will see a list of your existing GitHub organizations:
 
-<img src="./docs/images/diagram6.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram6.png" alt="drawing" width="800"/>
 
 You're going to create a new organization for this tutorial.
 
@@ -118,7 +118,7 @@ You're going to create a new organization for this tutorial.
 
 <br> This shows you the list of available plans:
 
-<img src="./docs/images/diagram7.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram7.png" alt="drawing" width="800"/>
 
 The `Free` plan is sufficient for this tutorial.
 
@@ -126,7 +126,7 @@ The `Free` plan is sufficient for this tutorial.
 
 <br> This shows you the properties for the new organization.
 
-<img src="./docs/images/diagram8.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram8.png" alt="drawing" width="800"/>
 
 <br> Complete the details for your new organization.
 
@@ -138,7 +138,7 @@ The `Free` plan is sufficient for this tutorial.
 <br> Once you've complete this page, click `Next`:
 
 <br> Your new organization `mqorg-xxxxx` has now been created:
-<img src="./docs/images/diagram9.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram9.png" alt="drawing" width="800"/>
 
 You can add colleagues to this organization each with a particular role. For
 now, we can use the organization as-is.
@@ -182,7 +182,7 @@ https://github.com/orgs/mqorg-odowdaibm/repositories
 
 Navigate to this URL in your browser:
 
-<img src="./docs/images/diagram10.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram10.png" alt="drawing" width="800"/>
 
 You can see that your new organization doesn't yet have any repositories in it.
 Let's start by adding the `mq01-ops` repository to it.
@@ -200,7 +200,7 @@ to our cluster every time we update `mq01-ops`.
 URL](https://github.com/mq-modernization-demo/mq01-ops/generate) to fork from
 the `mq01-ops` template repository:
 
-<img src="./docs/images/diagram11.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram11.png" alt="drawing" width="800"/>
 
 This screen allows you to define the properties for your copy of the `mq01-ops`
 repository.
@@ -215,7 +215,7 @@ Specifically:
 <br> Click on `Create repository from template`:
 
 <br> This repository will be cloned to the specified GitHub account:
-<img src="./docs/images/diagram12.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram12.png" alt="drawing" width="800"/>
 
 <br> You have successfully created a copy of the `mq01-ops` repository in your
 organization.
@@ -237,7 +237,7 @@ echo https://github.com/organizations/$GITORG/settings/personal-access-tokens-on
 
 Navigate to this URL in your browser and complete the workflow:
 
-<img src="./docs/images/diagram14.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram14.png" alt="drawing" width="800"/>
 
 Select the following options via their radio buttons:
 
@@ -258,7 +258,7 @@ required.
 
 Navigate to https://github.com/settings/tokens?type=beta in your Browser:
 
-<img src="./docs/images/diagram15.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram15.png" alt="drawing" width="800"/>
 
 Complete the page as follows:
 
@@ -274,7 +274,7 @@ Complete the page as follows:
 Click on `Generate token` to create a PAT which has the above access encoded
 within it.
 
-<img src="./docs/images/diagram16.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram16.png" alt="drawing" width="800"/>
 
 ---
 
@@ -571,7 +571,7 @@ PolicyRule:
   ---------                            -----------------  --------------  -----
   secrets                              []                 []              [*]
   services                             []                 []              [*]
-  MQservices.MQ.ibm.com  []                 []              [*]
+  MQservices.MQ.ibm.com                []                 []              [*]
   ingresses.networking.k8s.io          []                 []              [*]
 ```
 
@@ -859,7 +859,7 @@ Allow Tekton to write to image registry
 
 
 ```bash
-oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-mq-pod-service-account --namespace=mq01-ci
+oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-ibm-mq --namespace=mq01-ci
 ```
 
 ```bash
@@ -987,7 +987,7 @@ Login to ArgoCD with `admin` and `password`.
 
 Upon successful login, you will see the following screen:
 
-![diagram4](./docs/images/diagram4.png)
+![diagram4](./xdocs/images/diagram4.png)
 
 Notice how the ArgoCD application `mq01-argo` is monitoring the
 `https://github.com/mqorg-odowdaibm/mq01-ops` repository for YAMLs in the
