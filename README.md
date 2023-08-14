@@ -834,12 +834,35 @@ part of this tutorial.
 
 ## Configure image registry
 
-If you are using Single Node OpenShift with LVM, you can quickly configure the image registry to store its images
-in the default storage volume. In production system, you would configure the image registry to use separate persistent
-storage volume.
+If you are using Single Node OpenShift with LVM, you can quickly configure and start the image registry.
+
+In production system, you would configure the image registry to use separate persistent
+storage volume. However, to get going quickly, we can configure the registry to store its images in the 
+default storage volume.
+
+Issue the following command:
 
 ```bash
 oc patch configs.imageregistry.operator.openshift.io/cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
+```
+
+Finally, we start the image registry with the following command: 
+
+```bash
+oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed"}}'
+```
+
+Verify that the image regsitry is running with the following command:
+
+```bash
+oc get clusteroperator image-registry
+```
+
+which indicates that the registry is ready:
+
+```bash
+NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
+image-registry   4.12.24   True        False         False      26m     
 ```
 
 ---
