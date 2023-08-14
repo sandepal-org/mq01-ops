@@ -811,16 +811,16 @@ oc patch serviceaccount pipeline \
 
 ## Image registry
 
-Allow Tekton to write to image registry
+We're going to store queue manager container images in the image registry.  These 
+images will be built by Tekton, so we need to grant it suitable authority to store images:
 
+Allow Tekton to write to image registry with the following command:
 
 ```bash
 oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-ibm-mq --namespace=mq01-ci
 ```
 
-```bash
-// oc adm policy  add-cluster-role-to-user edit system:serviceaccount:mq01-ci:pipeline // not sure we need this?
-```
+
 
 ---
 
