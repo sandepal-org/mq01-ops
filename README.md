@@ -423,7 +423,7 @@ metadata:
   namespace: openshift-operators
 spec:
   channel: stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   name: openshift-gitops-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
@@ -433,33 +433,8 @@ See if you can understand each YAML node, referring to
 [subscriptions](https://olm.operatorframework.io/docs/concepts/crds/subscription/)
 if you need to learn more.
 
-## Approve ArgoCD install plan
-
-This subscription enables the cluster to keep up-to-date with new releases of
-ArgoCD. Each release has an [install
-plan](https://olm.operatorframework.io/docs/concepts/olm-architecture/) that is
-used to maintain it. Our install plan requires manual approval; we'll see why a
-little later.
-
-Let's find our install plan and approve it.
-
-Issue the following command:
-
-```bash
-oc get installplan -n openshift-operators | grep "openshift-gitops-operator" | awk '{print $1}' | \
-xargs oc patch installplan \
- --namespace openshift-operators \
- --type merge \
- --patch '{"spec":{"approved":true}}'
-```
-
-which will approve the install plan `install-xxxxx` for ArgoCD.
-
-```bash
-installplan.operators.coreos.com/install-xxxxx patched
-```
-
-ArgoCD will now install; this may take a few minutes.
+In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
+allows us to get going a little quicker.
 
 ## Verify ArgoCD installation
 
@@ -479,8 +454,8 @@ oc get clusterserviceversion openshift-gitops-operator.v1.5.10 -n openshift-gito
 ```
 
 ```bash
-NAME                               DISPLAY                    VERSION   REPLACES                                          PHASE
-openshift-gitops-operator.v1.5.10  Red Hat OpenShift GitOps   1.5.10    openshift-gitops-operator.v1.5.6-0.1664915551.p   Succeeded
+NAME                                DISPLAY                    VERSION   REPLACES                           PHASE
+openshift-gitops-operator.v1.5.10   Red Hat OpenShift GitOps   1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
 ```
 
 See how the operator has been successfully installed at version 1.5.10.
