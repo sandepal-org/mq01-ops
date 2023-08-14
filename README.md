@@ -668,11 +668,13 @@ allows us to get going a little quicker.
 ## Verify MQ install plan
 
 Feel free to verify the MQ installation with the following
-commands:
+command:
 
 ```bash
 oc get clusterserviceversion -n openshift-operators
 ```
+
+to see the full set of operators we've installed.
 
 ```bash
 NAME            DISPLAY   VERSION   REPLACES   PHASE
@@ -681,7 +683,9 @@ ibm-mq.v2.4.1                         IBM MQ                                2.4.
 openshift-gitops-operator.v1.5.10     Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
 ```
 
-which shows the version of the MQ operator has been successfully installed, along with its dependent IBM Common Services operator.
+This shows the version of the MQ operator that has been successfully installed, along with its dependent IBM Common Services operator.
+
+Use the following command to learn more about the MQ operator.
 
 ```bash
 oc describe csv ibm-mq.v2.4.1 -n openshift-operators
@@ -744,15 +748,28 @@ allows us to get going a little quicker.
 
 ## Verify Tekton install plan
 
-Again, feel free to verify the Tekton installation with the following commands:
+Again, feel free to verify the Tekton installation with the following command:
 
 ```bash
 oc get clusterserviceversion -n openshift-operators
 ```
 
+to see the full set of operators we've installed.
 
 ```bash
-oc describe csv openshift-pipelines-operator-rh.vx.y.z -n openshift-operators
+ibm-common-service-operator.v3.23.6      IBM Cloud Pak foundational services   3.23.6                                       Succeeded
+ibm-mq.v2.4.1                            IBM MQ                                2.4.1     ibm-mq.v2.4.0                      Succeeded
+openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
+openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1.9.3                                        Succeeded
+```
+
+This output shows the version of the Tekton operator that has been successfully installed.
+
+Use the following command to learn more about the Tekton operator.
+
+
+```bash
+oc describe csv openshift-pipelines-operator-rh.v1.9.3 -n openshift-operators
 ```
 
 ---
