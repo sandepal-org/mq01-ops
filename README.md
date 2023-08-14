@@ -209,7 +209,7 @@ Specifically:
 
 * In the `Owner` dropdown, select your newly created organization, e.g. `mqorg-xxxxx`
 * In the `Repository name` field, specify `mq01-ops`.
-* In the `Description` field, specify `Operational repository for MQ`.
+* In the `Description` field, specify `Operational repository for queue manager mq01`.
 * Select `Public` for the repository visibility.
 
 <br> Click on `Create repository from template`:
