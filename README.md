@@ -650,57 +650,41 @@ kind: Subscription
 metadata:
   labels:
     operators.coreos.com/mq-operator.mq01-ns: ''
-  name: mq-operator
+  name: ibm-mq
   namespace: openshift-operators
 spec:
   channel: v2.4
-  installPlanApproval: Manual
-  name: mq-operator
+  installPlanApproval: Automatic
+  name: ibm-mq
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
   startingCSV: mq-operator.v2.4.0
 ```
 
 Notice how this operator is installed in the `openshift-operators` namespace.
-Note also the use of `channel` and `startingCSV` to be precise about the exact
-version of the MQ operator to be installed.
+In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
+allows us to get going a little quicker.
 
-## Approve and verify MQ install plan
+## Verify MQ install plan
 
-Let's find our MQ install plan and approve it.
-
-```bash
-oc get installplan -n openshift-operators | grep "mq-operator" | awk '{print $1}' | \
-xargs oc patch installplan \
- --namespace openshift-operators \
- --type merge \
- --patch '{"spec":{"approved":true}}'
-```
-
-which will approve the install plan:
-
-```bash
-installplan.operators.coreos.com/install-xxxxx patched
-```
-
-where `install-xxxxx` is the name of the MQ install plan.
-
-Again, feel free to verify the MQ installation with the following
+Feel free to verify the MQ installation with the following
 commands:
 
 ```bash
-oc get clusterserviceversion ibm-mq.v2.4.0 -n openshift-operators
+oc get clusterserviceversion -n openshift-operators
 ```
 
 ```bash
 NAME            DISPLAY   VERSION   REPLACES   PHASE
-ibm-mq.v2.4.0   IBM MQ    2.4.0                Succeeded
+ibm-common-service-operator.v3.23.6   IBM Cloud Pak foundational services   3.23.6                                       Succeeded
+ibm-mq.v2.4.1                         IBM MQ                                2.4.1     ibm-mq.v2.4.0                      Succeeded
+openshift-gitops-operator.v1.5.10     Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
 ```
 
-which shows that the 2.4.0 version of the operator has been successfully installed.
+which shows the version of the MQ operator has been successfully installed, along with its dependent IBM Common Services operator.
 
 ```bash
-oc describe csv ibm-mq.v2.4.0 -n openshift-operators
+oc describe csv ibm-mq.v2.4.1 -n openshift-operators
 ```
 
 The output provides an extensive amount of information not listed
