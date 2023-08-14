@@ -812,15 +812,23 @@ oc patch serviceaccount pipeline \
 ## Image registry
 
 We're going to store queue manager container images in the image registry.  These 
-images will be built by Tekton, so we need to grant it suitable authority to store images:
+images will be used by the queue manager `mq01`, so we need to grant its serviveaccount  
+suitable authority to pull images from it.
 
-Allow Tekton to write to image registry with the following command:
+Allow service account `mq01-dev:mq01-ibm-mq` to pull from the image registry with the following command:
 
 ```bash
 oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-ibm-mq --namespace=mq01-ci
 ```
 
+You will see a warning message issued:
 
+```bash
+Warning: ServiceAccount 'mq01-ibm-mq' not found
+```
+
+because this service account does not exist yet; it will be created when we start the queue manager in the second 
+part of this tutorial.
 
 ---
 
