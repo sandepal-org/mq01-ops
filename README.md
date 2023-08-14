@@ -731,37 +731,18 @@ metadata:
   namespace: openshift-operators
 spec:
   channel:  stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   name: openshift-pipelines-operator-rh
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 ```
 
-Manual Tekton install:
-```bash
-kubectl apply -f https://storage.googleapis.com/tekton-releases/pipeline/previous/v0.16.3/release.yaml)
-```
+In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
+allows us to get going a little quicker.
+
 ---
 
-## Approve and verify Tekton install plan
-
-Let's find our install plan and approve it.
-
-```bash
-oc get installplan -n openshift-operators | grep "openshift-pipelines-operator" | awk '{print $1}' | \
-xargs oc patch installplan \
- --namespace openshift-operators \
- --type merge \
- --patch '{"spec":{"approved":true}}'
-```
-
-which will approve the install plan
-
-```bash
-installplan.operators.coreos.com/install-xxxxx patched
-```
-
-where `install-xxxxx` is the name of the Tekton install plan.
+## Verify Tekton install plan
 
 Again, feel free to verify the Tekton installation with the following commands:
 
@@ -769,7 +750,6 @@ Again, feel free to verify the Tekton installation with the following commands:
 oc get clusterserviceversion -n openshift-operators
 ```
 
-(replacing `x.y.z` with the installed version of Tekton)
 
 ```bash
 oc describe csv openshift-pipelines-operator-rh.vx.y.z -n openshift-operators
