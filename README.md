@@ -832,6 +832,18 @@ part of this tutorial.
 
 ---
 
+## Configure image registry
+
+If you are using Single Node OpenShift with LVM, you can quickly configure the image registry to store its images
+in the default storage volume. In production system, you would configure the image registry to use separate persistent
+storage volume.
+
+```bash
+oc patch configs.imageregistry.operator.openshift.io/cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
+```
+
+---
+
 ## An ArgoCD application to manage `mq01`
 
 Finally, we're going to create an ArgoCD application to manage the queue manager
