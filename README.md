@@ -876,9 +876,6 @@ with the certifcate only being created when the YAML is deployed. For example, w
 define how frequently a certifcate is renewed and its issuer in git, but the private key 
 and certicate are only created when the YAML 
 
-In this part of the tutorial, we create the Cert manager for our cluster -- in the second part of 
-the tutorial, we'll create a certificate for our queue manager `mq01`.
-
 We can now install the Cert Manager operator; using the same process as we used with ArgoCD.
 
 Issue the following command:
@@ -915,9 +912,57 @@ spec:
   sourceNamespace: openshift-marketplace
 ```
 
-Notice how this operator is installed in the `cer-manager-operator` namespace.
+Notice how this operator is installed in the `cert-manager-operator` namespace.
 In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
 allows us to get going a little quicker.
+
+---
+
+## Identify Certificate Authority
+
+Cert Manager needs to know which Certificate Authorities to use to issue certificates. In this 
+tutorial, we use self-signed certificates, so that we can get going quickly. However, it's simple 
+to change the YAML we provide to use a [Let's Encrypt CA](https://cert-manager.io/docs/getting-started/) 
+instead.
+
+Let's idenfity our CA using an `Issuer` resource made available by the Cert Manager operator.  
+
+Issue the following command:
+
+```bash
+oc apply -f setup/ca-issuer.yaml
+```
+
+which identifies a CA that will create self-signed certifcates: 
+
+```bash
+issuer.cert-manager.io/mq-selfsigned-issuer created
+```
+
+Explore the CA issuer definition using the following command:
+
+```bash
+cat setup/ca-issuer.yaml
+```
+
+which details the kind of cetificates issued by this issuer:
+
+```yaml
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: mq-selfsigned-issuer
+  namespace: mq01-dev
+spec:
+  selfSigned: {}
+```
+
+See how issuer `name: mq-self-signed` identifies that this CA is for use by MQ 
+queue manager who have `spec: selfsigned: {}` certificates. 
+
+In this part of the tutorial, we've created the Cert manager and identified a self-signing 
+CA for our cluster -- in the second part of the tutorial, we'll use both of these to create 
+a certificate for our queue manager `mq01`.
 
 ---
 
