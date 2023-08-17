@@ -7,6 +7,9 @@ rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["secrets", "services"]
   verbs: ["*"]
+- apiGroups: ["cert-manager.io"] # "" indicates the core API group
+  resources: ["certificates"]
+  verbs: ["*"]  
 - apiGroups: ["mq.ibm.com"] # mq.ibm.com API group - TBC
   resources: ["queuemanagers"] # TBC
   verbs: ["*"]
