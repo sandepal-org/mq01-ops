@@ -546,12 +546,13 @@ PolicyRule:
   ---------                            -----------------  --------------  -----
   secrets                              []                 []              [*]
   services                             []                 []              [*]
-  MQservices.MQ.ibm.com                []                 []              [*]
+  queuemanagers.mq.ibm.com             []                 []              [*]
+  certificates.cert-manager.io         []                 []              [*]
   ingresses.networking.k8s.io          []                 []              [*]
 ```
 
-See how ArgoCD can now control `secrets`, `services`, `MQservices` and
-`ingresses` with all operations such as create, read, update and delete (i.e.
+See how ArgoCD can now control `secrets`, `services`, `queuemanagers`, `certificates`
+and `ingresses` with all operations such as create, read, update and delete (i.e.
 `Verbs[*]`).
 
 ---
