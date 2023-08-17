@@ -658,7 +658,6 @@ spec:
   name: ibm-mq
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
-  startingCSV: mq-operator.v2.4.0
 ```
 
 Notice how this operator is installed in the `openshift-operators` namespace.
@@ -864,6 +863,61 @@ which indicates that the registry is ready:
 NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
 image-registry   4.12.24   True        False         False      26m     
 ```
+
+---
+
+## Certificate Manager
+
+Because we want our queue manager to be fully capable, we want to configure it 
+to use certificates. [Cert Manager](https://cert-manager.io/) is a wonderful tool 
+that simplifies the creation, renewal and revocation of digital certificates. It is 
+to define the behvaiour of an X.509 certifcate via a YAML, which can be stored in git, 
+with the certifcate only being created when the YAML is deployed. For example, we might 
+define how frequently a certifcate is renewed and its issuer in git, but the private key 
+and certicate are only created when the YAML 
+
+In this part of the tutorial, we create the Cert manager for our cluster -- in the second part of 
+the tutorial, we'll create a certificate for our queue manager `mq01`.
+
+We can now install the Cert Manager operator; using the same process as we used with ArgoCD.
+
+Issue the following command:
+
+```bash
+oc apply -f setup/cert-manager-operator-sub.yaml
+```
+
+which will create the Cert Manager operator subscription:
+
+```bash
+subscription.operators.coreos.com/cert-manager-operator created
+```
+
+Explore the subscription using the following command:
+
+```bash
+cat setup/cert-manager-operator-sub.yaml
+```
+
+which details the subscription:
+
+```yaml
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: openshift-cert-manager-operator
+  namespace: cert-manager-operator
+spec:
+  channel: stable-v1
+  installPlanApproval: Automatic
+  name: openshift-cert-manager-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+```
+
+Notice how this operator is installed in the `cer-manager-operator` namespace.
+In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
+allows us to get going a little quicker.
 
 ---
 
