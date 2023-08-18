@@ -767,7 +767,6 @@ This output shows the version of the Tekton operator that has been successfully 
 
 Use the following command to learn more about the Tekton operator.
 
-
 ```bash
 oc describe csv openshift-pipelines-operator-rh.v1.9.3 -n openshift-operators
 ```
@@ -1089,10 +1088,75 @@ Upon successful login, you will see the following screen:
 
 Notice how the ArgoCD application `mq01-argo` is monitoring the
 `https://github.com/mqorg-odowdaibm/mq01-ops` repository for YAMLs in the
-`environments/dev/mq01` folder.
+`environments/dev/mq01` folder. In the second half of the tutorial we will run the 
+Tekton pipeline that populates this repository folder with the YAMLs for the `mq01` 
+queue manager.
 
-In the next step we will run the Tekton pipeline that populates this repository
-folder with the YAMLs for the `mq01` queue manager.
+---
+
+## IBM Licensing 
+
+So that we easily measure our usage of IBM software, we configure the IBM License Service.
+
+Issue the following command:
+
+```bash
+oc apply -f setup/ibm-licensing.yaml
+```
+
+creates a subscription to the IBM Licensing Service:
+
+```bash
+subscription.operators.coreos.com/ibm-licensing-operator-app created
+```
+
+Explore the CA issuer definition using the following command:
+
+```bash
+cat setup/ibm-licensing.yaml
+```
+
+which details the kind of cetificates issued by this issuer:
+
+```yaml
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/mq-operator.mq01-ns: ''
+  name: ibm-licensing-operator-app
+  namespace: mq01-dev
+spec:
+  channel: v3
+  installPlanApproval: Automatic
+  name: ibm-licensing-operator-app
+  source: opencloud-operators
+  sourceNamespace: openshift-marketplace
+```
+
+Again, notice how we've simplified installation with an `Automatic subscription`
+
+---
+
+## Verify the IBM Licensing Service operator
+
+Again, feel free to verify the IBM Licensing operator:
+
+```bash
+oc get clusterserviceversion 
+```
+to see the full set of operators we've installed:
+
+```bash
+NAME                                     DISPLAY                               VERSION   REPLACES                           PHASE
+ibm-common-service-operator.v3.23.6      IBM Cloud Pak foundational services   3.23.6                                       Succeeded
+ibm-licensing-operator.v1.10.0           IBM Licensing Operator                1.10.0    ibm-licensing-operator.v1.9.0      Succeeded
+ibm-mq.v2.4.1                            IBM MQ                                2.4.1     ibm-mq.v2.4.0                      Succeeded
+openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
+openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1.9.3                                        Succeeded
+```
+
+This output shows the version of the IBM Licensing service operator that has been successfully installed.
 
 ---
 
