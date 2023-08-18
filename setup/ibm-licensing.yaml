@@ -4,7 +4,7 @@ metadata:
   labels:
     operators.coreos.com/mq-operator.mq01-ns: ''
   name: ibm-licensing-operator-app
-  namespace: openshift-operators
+  namespace: mq01-dev
 spec:
   channel: v3
   installPlanApproval: Automatic
