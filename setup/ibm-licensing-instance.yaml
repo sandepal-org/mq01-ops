@@ -1,0 +1,16 @@
+apiVersion: operator.ibm.com/v1alpha1
+kind: IBMLicensing
+metadata:
+  name: ibm-licensing-instance
+  labels:
+    app.kubernetes.io/instance: ibm-licensing-operator
+    app.kubernetes.io/managed-by: ibm-licensing-operator
+    app.kubernetes.io/name: ibm-licensing
+spec:
+  version: 1.10.0
+  apiSecretToken: ibm-licensing-token
+  datasource: datacollector
+  httpsEnable: true
+  routeEnabled: true
+  rhmpEnabled: true
+  logLevel: VERBOSE
