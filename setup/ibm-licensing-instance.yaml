@@ -1,7 +1,7 @@
 apiVersion: operator.ibm.com/v1alpha1
 kind: IBMLicensing
 metadata:
-  name: ibm-licensing-instance
+  name: instance1
   namespace: ibm-common-services
   labels:
     app.kubernetes.io/instance: ibm-licensing-operator
