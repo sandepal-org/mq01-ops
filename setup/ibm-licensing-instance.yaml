@@ -12,6 +12,4 @@ spec:
   apiSecretToken: ibm-licensing-token
   datasource: datacollector
   httpsEnable: true
-  routeEnabled: true
-  rhmpEnabled: true
   logLevel: VERBOSE
