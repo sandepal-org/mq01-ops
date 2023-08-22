@@ -433,8 +433,8 @@ See if you can understand each YAML node, referring to
 [subscriptions](https://olm.operatorframework.io/docs/concepts/crds/subscription/)
 if you need to learn more.
 
-In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
-allows us to get going a little quicker.
+In a full production system, we might prefer to use `Manual` rather than
+`Automatic`; our choice allows us to get going a little quicker.
 
 ## Verify ArgoCD installation
 
@@ -661,9 +661,9 @@ spec:
   sourceNamespace: openshift-marketplace
 ```
 
-Notice how this operator is installed in the `openshift-operators` namespace.
-In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
-allows us to get going a little quicker.
+Notice how this operator is installed in the `openshift-operators` namespace. In
+a full production system, we might prefer to use `Manual` rather than
+`Automatic`; our choice allows us to get going a little quicker.
 
 ## Verify MQ install plan
 
@@ -683,7 +683,8 @@ ibm-mq.v2.4.1                         IBM MQ                                2.4.
 openshift-gitops-operator.v1.5.10     Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
 ```
 
-This shows the version of the MQ operator that has been successfully installed, along with its dependent IBM Common Services operator.
+This shows the version of the MQ operator that has been successfully installed,
+along with its dependent IBM Common Services operator.
 
 Use the following command to learn more about the MQ operator.
 
@@ -741,8 +742,8 @@ spec:
   sourceNamespace: openshift-marketplace
 ```
 
-In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
-allows us to get going a little quicker.
+In a full production system, we might prefer to use `Manual` rather than
+`Automatic`; our choice allows us to get going a little quicker.
 
 ---
 
@@ -810,11 +811,12 @@ oc patch serviceaccount pipeline \
 
 ## Image registry
 
-We're going to store queue manager container images in the image registry.  These 
-images will be used by the queue manager `mq01`, so we need to grant its serviveaccount  
-suitable authority to pull images from it.
+We're going to store queue manager container images in the image registry. These
+images will be used by the queue manager `mq01`, so we need to grant its
+service account suitable authority to pull images from it.
 
-Allow service account `mq01-dev:mq01-ibm-mq` to pull from the image registry with the following command:
+Allow service account `mq01-dev:mq01-ibm-mq` to pull from the image registry
+with the following command:
 
 ```bash
 oc policy add-role-to-user system:image-puller system:serviceaccount:mq01-dev:mq01-ibm-mq --namespace=mq01-ci
@@ -826,18 +828,19 @@ You will see a warning message issued:
 Warning: ServiceAccount 'mq01-ibm-mq' not found
 ```
 
-because this service account does not exist yet; it will be created when we start the queue manager in the second 
-part of this tutorial.
+because this service account does not exist yet; it will be created when we
+start the queue manager in the second part of this tutorial.
 
 ---
 
 ## Configure image registry
 
-If you are using Single Node OpenShift with LVM, you can quickly configure and start the image registry.
+If you are using Single Node OpenShift with LVM, you can quickly configure and
+start the image registry.
 
-In production system, you would configure the image registry to use separate persistent
-storage volume. However, to get going quickly, we can configure the registry to store its images in the 
-default storage volume.
+In production system, you would configure the image registry to use separate
+persistent storage volume. However, to get going quickly, we can configure the
+registry to store its images in the default storage volume.
 
 Issue the following command:
 
@@ -845,7 +848,7 @@ Issue the following command:
 oc patch configs.imageregistry.operator.openshift.io/cluster --type merge --patch '{"spec":{"storage":{"emptyDir":{}}}}'
 ```
 
-Finally, we start the image registry with the following command: 
+Finally, we start the image registry with the following command:
 
 ```bash
 oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{"spec":{"managementState":"Managed"}}'
@@ -861,22 +864,24 @@ which indicates that the registry is ready:
 
 ```bash
 NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
-image-registry   4.12.24   True        False         False      26m     
+image-registry   4.12.24   True        False         False      26m
 ```
 
 ---
 
 ## Certificate Manager
 
-Because we want our queue manager to be fully capable, we want to configure it 
-to use certificates. [Cert Manager](https://cert-manager.io/) is a wonderful tool 
-that simplifies the creation, renewal and revocation of digital certificates. It is 
-to define the behvaiour of an X.509 certifcate via a YAML, which can be stored in git, 
-with the certifcate only being created when the YAML is deployed. For example, we might 
-define how frequently a certifcate is renewed and its issuer in git, but the private key 
-and certicate are only created when the YAML 
+Because we want our queue manager to be fully capable, we want to configure it
+to use certificates. [Cert Manager](https://cert-manager.io/) is a wonderful
+tool that simplifies the creation, renewal and revocation of digital
+certificates. It is to define the behavior of an X.509 certificate via a YAML,
+which can be stored in git, with the certificate only being created when the YAML
+is deployed. For example, we might define how frequently a certificate is renewed
+and its issuer in git, but the private key and certificate are only created when
+the YAML is deployed to the cluster.
 
-We can now install the Cert Manager operator; using the same process as we used with ArgoCD.
+We can now install the Cert Manager operator; using the same process as we used
+with ArgoCD.
 
 Issue the following command:
 
@@ -913,19 +918,20 @@ spec:
 ```
 
 Notice how this operator is installed in the `cert-manager-operator` namespace.
-In a full production system, we might prefer to use `Manual` rather than `Automatic`; our choice 
-allows us to get going a little quicker.
+In a full production system, we might prefer to use `Manual` rather than
+`Automatic`; our choice allows us to get going a little quicker.
 
 ---
 
 ## Identify Certificate Authority
 
-Cert Manager needs to know which Certificate Authorities to use to issue certificates. In this 
-tutorial, we use self-signed certificates, so that we can get going quickly. However, it's simple 
-to change the YAML we provide to use a [Let's Encrypt CA](https://cert-manager.io/docs/getting-started/) 
-instead.
+Cert Manager needs to know which Certificate Authorities to use to issue
+certificates. In this tutorial, we use self-signed certificates, so that we can
+get going quickly. However, it's simple to change the YAML we provide to use a
+[Let's Encrypt CA](https://cert-manager.io/docs/getting-started/) instead.
 
-Let's idenfity our CA using an `Issuer` resource made available by the Cert Manager operator.  
+Let's idenfity our CA using an `Issuer` resource made available by the Cert
+Manager operator.
 
 Issue the following command:
 
@@ -933,7 +939,7 @@ Issue the following command:
 oc apply -f setup/ca-issuer.yaml
 ```
 
-which identifies a CA that will create self-signed certifcates: 
+which identifies a CA that will create self-signed certificates:
 
 ```bash
 issuer.cert-manager.io/mq-selfsigned-issuer created
@@ -957,12 +963,12 @@ spec:
   selfSigned: {}
 ```
 
-See how issuer `name: mq-self-signed` identifies that this CA is for use by MQ 
-queue manager who have `spec: selfsigned: {}` certificates. 
+See how issuer `name: mq-self-signed` identifies that this CA is for use by MQ
+queue manager who have `spec: selfsigned: {}` certificates.
 
-In this part of the tutorial, we've created the Cert manager and identified a self-signing 
-CA for our cluster -- in the second part of the tutorial, we'll use both of these to create 
-a certificate for our queue manager `mq01`.
+In this part of the tutorial, we've created the Cert manager and identified a
+self-signing CA for our cluster -- in the second part of the tutorial, we'll use
+both of these to create a certificate for our queue manager `mq01`.
 
 ---
 
@@ -1088,17 +1094,17 @@ Upon successful login, you will see the following screen:
 
 Notice how the ArgoCD application `mq01-argo` is monitoring the
 `https://github.com/mqorg-odowdaibm/mq01-ops` repository for YAMLs in the
-`environments/dev/mq01` folder. In the second half of the tutorial we will run the 
-Tekton pipeline that populates this repository folder with the YAMLs for the `mq01` 
-queue manager.
+`environments/dev/mq01` folder. In the second half of the tutorial we will run
+the Tekton pipeline that populates this repository folder with the YAMLs for the
+`mq01` queue manager.
 
 ---
 
-## IBM Licensing 
+## IBM Licensing
 
-So that we easily measure our usage of IBM software, we configure the IBM License Service. This 
-is a two step process; we install the operator and then use the operator to create an instance of 
-the service that tracks usage.
+So that we easily measure our usage of IBM software, we configure the IBM
+License Service. This is a two step process; we install the operator and then
+use the operator to create an instance of the service that tracks usage.
 
 Let's start by installing the operator.
 
@@ -1147,7 +1153,7 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 Again, feel free to verify the IBM Licensing operator:
 
 ```bash
-oc get clusterserviceversion 
+oc get clusterserviceversion
 ```
 to see the full set of operators we've installed:
 
@@ -1160,13 +1166,15 @@ openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps              1
 openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1.9.3                                        Succeeded
 ```
 
-This output shows the version of the IBM Licensing service operator that has been successfully installed.
+This output shows the version of the IBM Licensing service operator that has
+been successfully installed.
 
 ---
 
 ## Create an instance of the IBM License service
 
-The IBM License Service operator is now used to create an instance of the IBM License service. 
+The IBM License Service operator is now used to create an instance of the IBM
+License service.
 
 Issue the following command:
 
@@ -1193,7 +1201,7 @@ apiVersion: operator.ibm.com/v1alpha1
 kind: IBMLicensing
 metadata:
   name: instance1
-  namespace: ibm-common-services  
+  namespace: ibm-common-services
   labels:
     app.kubernetes.io/instance: ibm-licensing-operator
     app.kubernetes.io/managed-by: ibm-licensing-operator
@@ -1215,7 +1223,7 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 
 We can verify that the IBM License service is running by checking that it's
 
-Issue the following command: 
+Issue the following command:
 
 ```bash
 oc get route ibm-licensing-service-instance1 -n ibm-common-services
