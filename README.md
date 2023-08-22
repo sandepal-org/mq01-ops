@@ -1096,7 +1096,11 @@ queue manager.
 
 ## IBM Licensing 
 
-So that we easily measure our usage of IBM software, we configure the IBM License Service.
+So that we easily measure our usage of IBM software, we configure the IBM License Service. This 
+is a two step process; we install the operator and then use the operator to create an instance of 
+the service that tracks usage.
+
+Let's start by installing the operator.
 
 Issue the following command:
 
@@ -1157,6 +1161,74 @@ openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1
 ```
 
 This output shows the version of the IBM Licensing service operator that has been successfully installed.
+
+---
+
+## Create an instance of the IBM License service
+
+The IBM License Service operator is now used to create an instance of the IBM License service. 
+
+Issue the following command:
+
+```bash
+oc apply -f setup/ibm-licensing-instance.yaml
+```
+
+creates an instance of the IBM Licensing Service:
+
+```bash
+ibmlicensing.operator.ibm.com/instance1 created
+```
+
+Explore the CA issuer definition using the following command:
+
+```bash
+cat setup/ibm-licensing-instance.yaml
+```
+
+which details the kind of cetificates issued by this issuer:
+
+```yaml
+apiVersion: operator.ibm.com/v1alpha1
+kind: IBMLicensing
+metadata:
+  name: instance1
+  namespace: ibm-common-services  
+  labels:
+    app.kubernetes.io/instance: ibm-licensing-operator
+    app.kubernetes.io/managed-by: ibm-licensing-operator
+    app.kubernetes.io/name: ibm-licensing
+spec:
+  version: 1.10.0
+  apiSecretToken: ibm-licensing-token
+  datasource: datacollector
+  httpsEnable: true
+  routeEnabled: true
+  logLevel: VERBOSE
+```
+
+Again, notice how we've simplified installation with an `Automatic subscription`
+
+---
+
+# Verify IBM Licensing instance
+
+We can verify that the IBM License service is running by checking that it's
+
+Issue the following command: 
+
+```bash
+oc get route ibm-licensing-service-instance1 -n ibm-common-services
+```
+
+which shows the HTTPS address of the IBM Licensing service
+
+```bash
+NAME                              HOST/PORT                                                                        PATH   SERVICES                          PORT       TERMINATION        WILDCARD
+ibm-licensing-service-instance1   ibm-licensing-service-instance1-ibm-common-services.apps.sno-ajo-1.snoajo1.com          ibm-licensing-service-instance1   api-port   passthrough/None   None
+```
+
+We will use this service in the second half of the tutorial.
 
 ---
 
