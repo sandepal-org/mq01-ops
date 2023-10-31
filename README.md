@@ -896,7 +896,7 @@ Verify that the image regsitry is running with the following command:
 oc get clusteroperator image-registry
 ```
 
-which indicates that the registry is ready:
+which indicates that the registry is ready; it may take a minute for it to start:
 
 ```bash
 NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE
