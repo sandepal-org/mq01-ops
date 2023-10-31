@@ -33,8 +33,8 @@ The following diagram shows a CICD pipeline for MQ:
 
 Notice:
 
-- The git repository `mq01-src` holds the source development artifacts for a
-  queue manage `mq01`.
+- The git repository `mq01-src` holds the source development artifacts for the
+  queue manager `mq01`.
 - A Tekton pipeline uses the `mq01-src` repository to build, package, test,
   version and deliver resources that define the `mq01` queue manager.
 - If the pipeline is successful, then the YAMLs that define `mq01` are stored in
@@ -57,8 +57,17 @@ configuration:
 
 ## Install Kubernetes
 
-At the moment, this Tutorial requires OpenShift. It will be updated to support
-Minikube.
+We recommend that you use [Single Node
+OpenShift](https://docs.openshift.com/container-platform/4.14/installing/installing_sno/install-sno-installing-sno.html)
+(**SNO**) using the assisted installer. You can get a free 60-day trial, and in
+under an hour you can have a fully working OpenShift cluster running on the
+hardware of your choice in a single virtual machine, requiring only 8 cores,
+16GB RAM and 120GB disk. You can stop and start the cluster when not in use. SNO
+also provides access to all the open source cloud native tools such as Tekton,
+ArgoCD and Cert Manager.
+
+If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
+small modifications.
 
 ---
 
@@ -67,7 +76,9 @@ Minikube.
 To interact with your cluster from your local machine, you will need to use the
 `kubectl` or `oc` command line interface.
 
-Add instructions to install `kubectl` or `oc` CLI.
+Add instructions to install `kubectl` or `oc` CLI. We use the `oc` command
+throughout this tutorial, but you can replace with `kubectl` if you're not using
+OpenShift.
 
 ---
 
