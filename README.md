@@ -1154,10 +1154,8 @@ which will return a URL similar to this:
 https://openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com
 ```
 
-We will use this URL to log into the ArgoCD admin console to view our
-deployments. (You may need to add
-`openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com` to your
-`/etc/hosts file`)
+We will use this URL to log into the ArgoCD admin console to view our deployments.
+(You may need to add the hostname to your `/etc/hosts file`)
 
 Issue the following command to determine the ArgoCD `password` for the `admin`
 user:
