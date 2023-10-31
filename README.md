@@ -399,7 +399,7 @@ Issue the following command to show these namespaces in the cluster
 ```bash
 oc get namespace mq01-ci
 oc get namespace mq01-dev
-oc get cert-manager
+oc get namespace cert-manager
 ```
 
 which will shows these namespaces and their age, for example:
