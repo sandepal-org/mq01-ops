@@ -1155,7 +1155,7 @@ https://openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com
 ```
 
 We will use this URL to log into the ArgoCD admin console to view our deployments.
-(You may need to add the hostname to your `/etc/hosts file`)
+(You may need to add the hostname to your `/etc/hosts file` of your lcoal machine.)
 
 Issue the following command to determine the ArgoCD `password` for the `admin`
 user:
