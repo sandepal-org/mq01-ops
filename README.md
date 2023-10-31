@@ -486,6 +486,9 @@ Issue the following command:
 oc get clusterserviceversion openshift-gitops-operator.v1.5.10 -n openshift-gitops
 ```
 
+(Note that you may need to wait for 30 seconds before issuing the command, as it
+takes a little time to get started.)
+
 ```bash
 NAME                                DISPLAY                    VERSION   REPLACES                           PHASE
 openshift-gitops-operator.v1.5.10   Red Hat OpenShift GitOps   1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
@@ -703,6 +706,9 @@ a full production system, we might prefer to use `Manual` rather than
 Feel free to verify the MQ installation with the following
 command:
 
+(Note that you may need to wait for 30 seconds before issuing the command, as it
+takes a little time to get started.)
+
 ```bash
 oc get clusterserviceversion -n openshift-operators
 ```
@@ -867,9 +873,6 @@ start the queue manager in the second part of this tutorial.
 ---
 
 ## Configure image registry
-
-If you are using Single Node OpenShift with LVM, you can quickly configure and
-start the image registry.
 
 In production system, you would configure the image registry to use separate
 persistent storage volume. However, to get going quickly, we can configure the
