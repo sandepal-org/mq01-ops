@@ -312,9 +312,9 @@ cd mq01-ops
 
 ---
 
-## Create MQ development namespace
+## Create namespaces
 
-Let's use some YAML in `mq01-ops` to define two namespaces in our cluster:
+Let's use some YAML in `mq01-ops` to define some namespaces in our cluster:
 
 Issue the following command:
 
@@ -327,6 +327,7 @@ which will confirm the following namespaces are created in the cluster:
 ```bash
 namespace/mq01-ci created
 namespace/mq01-dev created
+namespace/cert-manager-operator created
 ```
 
 As the tutorial proceeds, we'll see how the YAMLs in `mq01-ops` **fully** define
@@ -334,6 +335,9 @@ the MQ related resources deployed to the cluster. In fact, we're going to set up
 the cluster such that it is **automatically** updated whenever the `mq01-ops`
 repository is updated. This concept is called **continuous deployment** and
 we'll use ArgoCD to achieve it.
+
+We'll also use a component called **Cert-manager** to automate the issue, renewal and revocation of
+X.509 certificates. The is in the `cert-manager-operator` namepsace.
 
 ---
 
