@@ -11,3 +11,10 @@ metadata:
   name: mq01-dev
   labels:
     name: mq01-dev
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cert-manager-operator
+  labels:
+    name: ceret-manager-operator
