@@ -325,7 +325,14 @@ cd mq01-ops
 
 ## Create namespaces
 
-Let's use some YAML in `mq01-ops` to define some namespaces in our cluster:
+As the tutorial proceeds, we'll see how the YAMLs in `mq01-ops` **fully** define
+the MQ related resources deployed to the cluster. In fact, we're going to set up
+the cluster such that it is **automatically** updated whenever the `mq01-ops`
+repository is updated. This concept is called **continuous deployment** and
+we'll use Tekton and ArgoCD to achieve it.
+
+For now, let's use some YAML in `mq01-ops` to define some namespaces in our
+cluster:
 
 Issue the following command:
 
@@ -341,14 +348,13 @@ namespace/mq01-dev created
 namespace/cert-manager-operator created
 ```
 
-As the tutorial proceeds, we'll see how the YAMLs in `mq01-ops` **fully** define
-the MQ related resources deployed to the cluster. In fact, we're going to set up
-the cluster such that it is **automatically** updated whenever the `mq01-ops`
-repository is updated. This concept is called **continuous deployment** and
-we'll use ArgoCD to achieve it.
-
-We'll also use a component called **Cert-manager** to automate the issue, renewal and revocation of
-X.509 certificates. The is in the `cert-manager-operator` namepsace.
+We use these namespaces to give us fine grained security control over our
+resources. We're going to use the `mq01-ci` namespace for our continuous
+integration Tekton pipelines. We're going to use the `mq01-dev` namespace for
+the `mq01` queue manager and its associated resources, such as X.509
+certificates. We'll also use a component called **Cert-manager** to automate
+the issue, renewal and revocation of X.509 certificates. We'll install it in the
+`cert-manager-operator` namespace.
 
 ---
 
@@ -379,6 +385,13 @@ metadata:
   name: mq01-dev
   labels:
     name: mq01-dev
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: cert-manager-operator
+  labels:
+    name: cert-manager-operator
 ```
 
 Issue the following command to show these namespaces in the cluster
@@ -386,6 +399,7 @@ Issue the following command to show these namespaces in the cluster
 ```bash
 oc get namespace mq01-ci
 oc get namespace mq01-dev
+oc get cert-manager
 ```
 
 which will shows these namespaces and their age, for example:
