@@ -959,6 +959,53 @@ In a full production system, we might prefer to use `Manual` rather than
 
 ---
 
+## Verify Cert manager installation
+
+Again, feel free to verify the Cert manager installation with the following command:
+
+```bash
+oc get clusterserviceversion
+```
+
+to see the full set of operators we've installed.
+
+```bash
+## Verify Tekton install plan
+
+Again, feel free to verify the Tekton installation with the following command:
+
+```bash
+oc get clusterserviceversion -n openshift-operators
+```
+
+to see the full set of operators we've installed.
+
+```bash
+NAME                                     DISPLAY                                       VERSION   REPLACES                           PHASE
+ibm-common-service-operator.v3.23.8      IBM Cloud Pak foundational services           3.23.8                                       Succeeded
+ibm-mq.v2.4.4                            IBM MQ                                        2.4.4     ibm-mq.v2.4.3                      Succeeded
+openshift-cert-manager.v1.7.1            cert-manager Operator for Red Hat OpenShift   1.7.1-1                                      Succeeded
+openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps                      1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
+openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines                   1.9.3                                        Succeeded
+```
+
+This output shows the version of the Cert manager operator that has been successfully installed.
+
+Use the following command to learn more about the Cert manager operator.
+
+```bash
+oc describe csv openshift-cert-manager-.v1.7.1 -n cert-manager-operators
+```
+
+This output shows the version of the Cert manager operator that has been successfully installed.
+
+Use the following command to learn more about the Cert manager operator.
+
+```bash
+oc describe csv openshift-cert-manager.v1.7.1 -n cert-manager-operators
+
+---
+
 ## Identify Certificate Authority
 
 Cert Manager needs to know which Certificate Authorities to use to issue
