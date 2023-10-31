@@ -1013,7 +1013,7 @@ certificates. In this tutorial, we use self-signed certificates, so that we can
 get going quickly. However, it's simple to change the YAML we provide to use a
 [Let's Encrypt CA](https://cert-manager.io/docs/getting-started/) instead.
 
-Let's idenfity our CA using an `Issuer` resource made available by the Cert
+Let's identify our CA using an `Issuer` resource made available by the Cert
 Manager operator.
 
 Issue the following command:
