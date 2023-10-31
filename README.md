@@ -409,7 +409,7 @@ NAME      STATUS   AGE
 mq01-ci   Active   18s
 NAME       STATUS   AGE
 mq01-dev   Active   18s
-NAME       STATUS   AGE
+NAME                    STATUS   AGE
 cert-manager-operator   Active   18s
 ```
 
@@ -419,6 +419,8 @@ During this tutorial, we'll see how:
   build, package, version and test `mq01`.
 - the `mq01-dev` namespace is used to store specific Kubernetes resources
   relating to a running queue manager, `mq01`.
+- the `cert-manager-operator` namespace is used to store specific Kubernetes resources
+  relating to Cert Manager.
 
 ---
 
