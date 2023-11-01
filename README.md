@@ -1333,7 +1333,9 @@ You've configured your cluster for MQ. Let's run a pipeline to populate
 the `mq01-ops` repository. This pipeline is held in the source repository
 `mq01-src`; it also holds the configuration for the `mq01` queue manager.
 
-Continue [here](https://github.com/mq-modernization-demo/mq01-src#introduction) to fork
-your copy of the `mq01-src` repository.
+In the [next part of the
+tutorial](https://github.com/mq-modernization-demo/mq01-src#introduction), we
+will use the components we've set up to build, test and deploy the `mq01` queue
+manager.
 
 ---
