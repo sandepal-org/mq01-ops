@@ -1305,7 +1305,7 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 
 ---
 
-# Verify IBM Licensing instance
+## Verify IBM Licensing instance
 
 We can verify that the licensing instance is running by checking that its
 network route is available.
@@ -1329,11 +1329,7 @@ We will use this service in the second half of the tutorial.
 
 ## Congratulations
 
-You've configured your cluster for MQ. Let's run a pipeline to populate
-the `mq01-ops` repository. This pipeline is held in the source repository
-`mq01-src`; it also holds the configuration for the `mq01` queue manager.
-
-In the [next part of the
+You've configured your cluster for MQ. In the [next part of the
 tutorial](https://github.com/mq-modernization-demo/mq01-src#introduction), we
 will use the components we've installed and configured to build, test and deploy
 the `mq01` queue manager.
