@@ -1307,7 +1307,8 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 
 # Verify IBM Licensing instance
 
-We can verify that the IBM License service is running by checking that it's
+We can verify that the licensing instance is running by checking that its
+network route is available.
 
 Issue the following command:
 
@@ -1315,7 +1316,7 @@ Issue the following command:
 oc get route ibm-licensing-service-instance1 -n ibm-common-services
 ```
 
-which shows the HTTPS address of the IBM Licensing service
+which shows the HTTPS address of the IBM Licensing service:
 
 ```bash
 NAME                              HOST/PORT                                                                        PATH   SERVICES                          PORT       TERMINATION        WILDCARD
