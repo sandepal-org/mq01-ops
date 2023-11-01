@@ -1335,7 +1335,7 @@ the `mq01-ops` repository. This pipeline is held in the source repository
 
 In the [next part of the
 tutorial](https://github.com/mq-modernization-demo/mq01-src#introduction), we
-will use the components we've set up to build, test and deploy the `mq01` queue
-manager.
+will use the components we've installed and configured to build, test and deploy
+the `mq01` queue manager.
 
 ---
