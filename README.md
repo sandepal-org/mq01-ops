@@ -137,7 +137,7 @@ The `Free` plan is sufficient for this tutorial.
 
 <br> This shows you the properties for the new organization.
 
-<img src="./xdocs/images/diagram8.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram8.png" alt="drawing" width="600"/>
 
 <br> Complete the details for your new organization.
 
@@ -149,7 +149,8 @@ The `Free` plan is sufficient for this tutorial.
 <br> Once you've complete this page, click `Next`:
 
 <br> Your new organization `mqorg-xxxxx` has now been created:
-<img src="./xdocs/images/diagram9.png" alt="drawing" width="800"/>
+
+<img src="./xdocs/images/diagram9.png" alt="drawing" width="600"/>
 
 You can add colleagues to this organization each with a particular role. For
 now, we can use the organization as-is.
@@ -193,7 +194,7 @@ https://github.com/orgs/mqorg-odowdaibm/repositories
 
 Navigate to this URL in your browser:
 
-<img src="./xdocs/images/diagram10.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram10.png" alt="drawing" width="1000"/>
 
 You can see that your new organization doesn't yet have any repositories in it.
 Let's start by adding the `mq01-ops` repository to it.
@@ -211,7 +212,7 @@ to our cluster every time we update `mq01-ops`.
 URL](https://github.com/mq-modernization-demo/mq01-ops/generate) to fork from
 the `mq01-ops` template repository:
 
-<img src="./xdocs/images/diagram11.png" alt="drawing" width="800"/>
+<img src="./xdocs/images/diagram11.png" alt="drawing" width="600"/>
 
 This screen allows you to define the properties for your copy of the `mq01-ops`
 repository.
