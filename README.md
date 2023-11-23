@@ -68,7 +68,7 @@ ArgoCD and Cert Manager.
 
 [This
 tutorial](https://developer.ibm.com/tutorials/spin-up-a-single-node-openshift-cluster-with-one-command/)
-is particularly good to help you get your cluster up and running.
+is particularly good to help you get your SNO cluster up and running.
 
 If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
 small modifications.
@@ -78,11 +78,14 @@ small modifications.
 ## Install Kubernetes CLI
 
 To interact with your cluster from your local machine, you will need to use the
-`kubectl` or `oc` command line interface.
+`kubectl` or `oc` command line interface. This tutorial uses the `oc` CLI.
 
-Add instructions to install `kubectl` or `oc` CLI. We use the `oc` command
-throughout this tutorial, but you can replace with `kubectl` if you're not using
-OpenShift.
+You can install the `oc` CLI during the installation process, or using the
+following
+[instructions](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html)
+
+You can install the `kubectl` CLI using the following
+[instructions](https://kubernetes.io/docs/tasks/tools/).
 
 ---
 
