@@ -66,6 +66,10 @@ hardware of your choice in a single virtual machine, requiring only 8 cores,
 also provides access to all the open source cloud native tools such as Tekton,
 ArgoCD and Cert Manager.
 
+[This
+tutorial](https://developer.ibm.com/tutorials/spin-up-a-single-node-openshift-cluster-with-one-command/)
+is particularly good to help you get your cluster up and running.
+
 If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
 small modifications.
 
