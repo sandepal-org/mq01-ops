@@ -510,8 +510,8 @@ Feel free to explore this CSV:
 oc describe csv openshift-gitops-operator.v1.5.10
 ```
 
-The output provides an extensive amount of information not listed
-here; feel free to examine it.
+The output provides an extensive amount of information not listed here; feel
+free to examine it.
 
 ## Minor modifications to ArgoCD
 
@@ -718,7 +718,7 @@ command:
 takes a little time to get started.)
 
 ```bash
-oc get clusterserviceversion -n openshift-operators
+oc get clusterserviceversion
 ```
 
 to see the full set of operators we've installed.
@@ -736,7 +736,7 @@ along with its dependent IBM Common Services operator.
 Use the following command to learn more about the MQ operator.
 
 ```bash
-oc describe csv ibm-mq.v2.4.1 -n openshift-operators
+oc describe csv ibm-mq.v2.4.1
 ```
 
 The output provides an extensive amount of information not listed
