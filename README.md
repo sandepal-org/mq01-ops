@@ -1154,18 +1154,7 @@ In a full production system, we might prefer to use `Manual` rather than
 Again, feel free to verify the Cert manager installation with the following command:
 
 ```bash
-oc get clusterserviceversion
-```
-
-to see the full set of operators we've installed.
-
-```bash
-## Verify Tekton install plan
-
-Again, feel free to verify the Tekton installation with the following command:
-
-```bash
-oc get clusterserviceversion -n openshift-operators
+oc get clusterserviceversion -n cert-manager-operator
 ```
 
 to see the full set of operators we've installed.
