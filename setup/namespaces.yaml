@@ -18,3 +18,10 @@ metadata:
   name: cert-manager-operator
   labels:
     name: cert-manager-operator
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: openshift-storage
+  labels:
+    name: openshift-storage

@@ -400,6 +400,13 @@ metadata:
   name: cert-manager-operator
   labels:
     name: cert-manager-operator
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: openshift-storage
+  labels:
+    name: openshift-storage
 ```
 
 Issue the following command to show these namespaces in the cluster
@@ -408,6 +415,7 @@ Issue the following command to show these namespaces in the cluster
 oc get namespace mq01-ci
 oc get namespace mq01-dev
 oc get namespace cert-manager-operator
+oc get namespace openshift-storage
 ```
 
 which will shows these namespaces and their age, for example:
@@ -419,6 +427,8 @@ NAME       STATUS   AGE
 mq01-dev   Active   18s
 NAME                    STATUS   AGE
 cert-manager-operator   Active   18s
+NAME              STATUS   AGE
+openshift-storage Active   18s
 ```
 
 During this tutorial, we'll see how:
@@ -429,6 +439,9 @@ During this tutorial, we'll see how:
   relating to a running queue manager, `mq01`.
 - the `cert-manager-operator` namespace is used to store specific Kubernetes resources
   relating to Cert Manager.
+- the `openshift-storage` namespace is used to store specific Kubernetes
+  resources relating to LVM, the storage manager that we'll use to store MQ
+  messages and transactions.
 
 ---
 
