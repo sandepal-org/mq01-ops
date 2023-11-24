@@ -921,7 +921,7 @@ In a full production system, we might prefer to use `Manual` rather than
 Again, feel free to verify the LVM Tekton installation with the following command:
 
 ```bash
-oc get clusterserviceversion
+oc get clusterserviceversion -n openshift-storage
 ```
 
 to see the full set of operators we've installed.
