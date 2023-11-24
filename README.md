@@ -82,7 +82,7 @@ To interact with your cluster from your local machine, you will need to use the
 
 You can install the `oc` CLI during the installation process, or using the
 following
-[instructions](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html)
+[instructions](https://docs.openshift.com/container-platform/4.14/cli_reference/openshift_cli/getting-started-cli.html).
 
 You can install the `kubectl` CLI using the following
 [instructions](https://kubernetes.io/docs/tasks/tools/).
@@ -91,7 +91,7 @@ You can install the `kubectl` CLI using the following
 
 ## Login to the cluster
 
-From the your OpenShift web console console, select `Copy login command`, and
+From your OpenShift web console console, select `Copy login command`, and
 copy the login command.
 
 Login to cluster using this command, for example:
@@ -491,7 +491,7 @@ CSV for ArgoCD.
 Issue the following command:
 
 ```bash
-oc get clusterserviceversion openshift-gitops-operator.v1.5.10 -n openshift-gitops
+oc get clusterserviceversion openshift-gitops-operator.v1.5.10
 ```
 
 (Note that you may need to wait for 30 seconds before issuing the command, as it
@@ -507,7 +507,7 @@ See how the operator has been successfully installed at version 1.5.10.
 Feel free to explore this CSV:
 
 ```bash
-oc describe csv openshift-gitops-operator.v1.5.10 -n openshift-operators
+oc describe csv openshift-gitops-operator.v1.5.10
 ```
 
 The output provides an extensive amount of information not listed
