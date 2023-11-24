@@ -505,6 +505,7 @@ openshift-gitops-operator.v1.5.10   Red Hat OpenShift GitOps   1.5.10    openshi
 See how the operator has been successfully installed at version 1.5.10.
 
 Feel free to explore this CSV:
+(Use the  version from the previous output.)
 
 ```bash
 oc describe csv openshift-gitops-operator.v1.5.10
@@ -714,8 +715,8 @@ a full production system, we might prefer to use `Manual` rather than
 Feel free to verify the MQ installation with the following
 command:
 
-(Note that you may need to wait for 30 seconds before issuing the command, as it
-takes a little time to get started.)
+(Note that you may need to wait for 30 seconds before issuing the command, as
+installation takes a little time to get started.)
 
 ```bash
 oc get clusterserviceversion
@@ -734,6 +735,7 @@ This shows the version of the MQ operator that has been successfully installed,
 along with its dependent IBM Common Services operator.
 
 Use the following command to learn more about the MQ operator.
+(Use the  version from the previous output.)
 
 ```bash
 oc describe csv ibm-mq.v2.4.1
@@ -798,8 +800,11 @@ In a full production system, we might prefer to use `Manual` rather than
 
 Again, feel free to verify the Tekton installation with the following command:
 
+(Note that you may need to wait for 30 seconds before issuing the command, as
+installation takes a little time to get started.)
+
 ```bash
-oc get clusterserviceversion -n openshift-operators
+oc get clusterserviceversion
 ```
 
 to see the full set of operators we've installed.
@@ -813,10 +818,11 @@ openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1
 
 This output shows the version of the Tekton operator that has been successfully installed.
 
-Use the following command to learn more about the Tekton operator.
+Use the following command to learn more about the Tekton operator:
+(Use the  version from the previous output.)
 
 ```bash
-oc describe csv openshift-pipelines-operator-rh.v1.9.3 -n openshift-operators
+oc describe csv openshift-pipelines-operator-rh.v1.9.3
 ```
 
 ---
