@@ -860,7 +860,22 @@ Kubernetes storage provisioners conform to the same interface --
 -- once you've used one, it's easy to use another one. For example AWS, Azure
 and Google all provide CSIs to access their native storage types.
 
-Issue the following command to install the LVM operator:
+We need to define an **Operator Group** for LVM which identifies the
+`openshift-storage` namespace in which to it generates required RBAC access for
+the LVM.
+
+Issue the following command to create the operator group:
+
+```bash
+oc apply -f setup/lvm-operator-group.yaml
+```
+which will create the operator group:
+
+```bash
+operatorgroup.operators.coreos.com/openshift-storage-operatorgroup created
+```
+
+Now we can issue the following command to install the LVM operator:
 
 ```bash
 oc apply -f setup/lvm-operator-sub.yaml
@@ -906,7 +921,7 @@ In a full production system, we might prefer to use `Manual` rather than
 Again, feel free to verify the LVM Tekton installation with the following command:
 
 ```bash
-oc get clusterserviceversion -n openshift-storage
+oc get clusterserviceversion
 ```
 
 to see the full set of operators we've installed.
