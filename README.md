@@ -1517,7 +1517,8 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 ## Verify IBM Licensing instance
 
 We can verify that the licensing instance is running by checking that its
-network route is available.
+network route is available. It may take a few minutes for the license instance
+to make the route active.
 
 Issue the following command:
 
