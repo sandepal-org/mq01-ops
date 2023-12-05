@@ -1313,10 +1313,8 @@ command to replace $GITORG with your GitHub organization.
 Issue the following command:
 
 ```bash
-envsubst < environments/dev/argocd/mq01.yaml | oc apply -f -
+envsubst < environments/dev/argocd/mq01.yaml > mq01-argocd.tmp && mv mq01-argocd.tmp environments/dev/argocd/mq01.yaml | oc apply -f -
 ```
-
-envsubst < environments/dev/argocd/mq01.yaml > mq01-argocd.tmp && mv mq01-argocd.tmp environments/dev/argocd/mq01.yaml
 
 which will complete with:
 
@@ -1324,7 +1322,15 @@ which will complete with:
 application.argoproj.io/mq01-argo created
 ```
 
-We now have an ArgoCD application monitoring our repository.
+You can verify that the `envsubst` command has replaced `$GITORG`:
+
+```bash
+cat environments/dev/argocd/mq01.yaml
+```
+
+See how `repoURL:` now identifies the Git URL locations that the ArgoCD
+application is monitoring. It's currently empty -- it will be populated by our
+pipeline in the second part of the tutorial.
 
 ## View `mq01-argo` in ArgoCD UI
 
