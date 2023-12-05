@@ -1305,23 +1305,12 @@ See how:
   - `targetRevision: main` identifies the branch within the repository
   - `path: environments/dev/mq01/` identifies the folder within the repository
 
----
-
-## Deploy `mq01-argo` to the cluster
-
-Let's deploy this ArgoCD application to the cluster. We use the `envsubst`
-command to replace $GITORG with your GitHub organization.
+We use the `envsubst` command to replace $GITORG with your GitHub organization.
 
 Issue the following command:
 
 ```bash
-envsubst < environments/dev/argocd/mq01.yaml > mq01-argocd.tmp && mv mq01-argocd.tmp environments/dev/argocd/mq01.yaml | oc apply -f -
-```
-
-which will complete with:
-
-```bash
-application.argoproj.io/mq01-argo created
+envsubst < environments/dev/argocd/mq01.yaml > mq01-argocd.tmp && mv mq01-argocd.tmp environments/dev/argocd/mq01.yaml
 ```
 
 You can verify that the `envsubst` command has replaced `$GITORG`:
@@ -1330,9 +1319,26 @@ You can verify that the `envsubst` command has replaced `$GITORG`:
 cat environments/dev/argocd/mq01.yaml
 ```
 
-See how `repoURL:` now identifies the Git URL locations that the ArgoCD
-application is monitoring. It's currently empty -- it will be populated by our
-pipeline in the second part of the tutorial.
+`repoURL:` now identifies the Git URL that the ArgoCD application will monitor.
+
+---
+
+## Deploy `mq01-argo` to the cluster
+
+Let's now deploy this ArgoCD application to the cluster.
+
+```bash
+oc apply -f environments/dev/argocd/mq01.yaml
+```
+
+which will complete with:
+
+```bash
+application.argoproj.io/mq01-argo created
+```
+
+The `mq01-argo` application is currently watch an empty URL; it will be
+populated by our pipeline in the second part of the tutorial.
 
 ---
 
