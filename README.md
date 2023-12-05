@@ -1106,9 +1106,9 @@ is deployed. For example, we might define how frequently a certificate is renewe
 and its issuer in git, but the private key and certificate are only created when
 the YAML is deployed to the cluster.
 
-We also need to define an **Operator Group** for Cert Manager which allows identifies that it can 
-generate generates required RBAC access for
-the LVM.
+We also need to define an **Operator Group** for Cert Manager; it can generate
+the required RBAC access for all namespaces in the cluster. (Notice how this is
+much wider scope than LVM.)
 
 Issue the following command to create the operator group:
 
