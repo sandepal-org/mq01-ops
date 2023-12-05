@@ -1445,17 +1445,20 @@ Again, notice how we've simplified installation with an `Automatic subscription`
 Again, feel free to verify the IBM Licensing operator:
 
 ```bash
-oc get clusterserviceversion
+oc get clusterserviceversion -n ibm-common-services
 ```
 to see the full set of operators we've installed:
 
 ```bash
-NAME                                     DISPLAY                               VERSION   REPLACES                           PHASE
-ibm-common-service-operator.v3.23.6      IBM Cloud Pak foundational services   3.23.6                                       Succeeded
-ibm-licensing-operator.v1.10.0           IBM Licensing Operator                1.10.0    ibm-licensing-operator.v1.9.0      Succeeded
-ibm-mq.v2.4.1                            IBM MQ                                2.4.1     ibm-mq.v2.4.0                      Succeeded
-openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps              1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
-openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines           1.9.3                                        Succeeded
+NAME                                           DISPLAY                                       VERSION   REPLACES                           PHASE
+ibm-common-service-operator.v3.23.10           IBM Cloud Pak foundational services           3.23.10                                      Succeeded
+ibm-licensing-operator.v1.10.0                 IBM Licensing Operator                        1.10.0    ibm-licensing-operator.v1.9.0      Succeeded
+ibm-mq.v2.4.5                                  IBM MQ                                        2.4.5     ibm-mq.v2.4.4                      Succeeded
+ibm-namespace-scope-operator.v1.17.9           IBM NamespaceScope Operator                   1.17.9                                       Succeeded
+openshift-cert-manager.v1.7.1                  cert-manager Operator for Red Hat OpenShift   1.7.1-1                                      Succeeded
+openshift-gitops-operator.v1.5.10              Red Hat OpenShift GitOps                      1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
+openshift-pipelines-operator-rh.v1.9.3         Red Hat OpenShift Pipelines                   1.9.3                                        Succeeded
+operand-deployment-lifecycle-manager.v1.21.9   Operand Deployment Lifecycle Manager          1.21.9                                       Succeeded
 ```
 
 This output shows the version of the IBM Licensing service operator that has
