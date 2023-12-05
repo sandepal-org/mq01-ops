@@ -1193,13 +1193,6 @@ oc describe csv openshift-cert-manager.v1.7.1 -n cert-manager-operator
 
 This output shows the version of the Cert manager operator that has been successfully installed.
 
-Use the following command to learn more about the Cert manager operator.
-
-```bash
-oc describe csv openshift-cert-manager.v1.7.1 -n cert-manager-operator
-
-```
-
 ---
 
 ## Identify Certificate Authority
