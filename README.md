@@ -1382,7 +1382,7 @@ Login to ArgoCD with `admin` and `password`.
 
 Upon successful login, you will see the following screen:
 
-![diagram4](./xdocs/images/diagram4.png)
+<img src="./xdocs/images/diagram4.png" alt="drawing" width="400"/>
 
 Notice how the ArgoCD application `mq01-argo` is monitoring the
 `https://github.com/mqorg-odowdaibm/mq01-ops` repository for YAMLs in the
