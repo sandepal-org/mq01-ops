@@ -1,6 +1,5 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: example
+  name: cert-manager-group
   namespace: cert-manager-operator
-spec: {}
