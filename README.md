@@ -1169,7 +1169,7 @@ In a full production system, we might prefer to use `Manual` rather than
 Again, feel free to verify the Cert manager installation with the following command:
 
 ```bash
-oc get clusterserviceversion -n cert-manager-operator
+oc get clusterserviceversion
 ```
 
 to see the full set of operators we've installed.
@@ -1188,7 +1188,7 @@ This output shows the version of the Cert manager operator that has been success
 Use the following command to learn more about the Cert manager operator.
 
 ```bash
-oc describe csv openshift-cert-manager-.v1.7.1 -n cert-manager-operators
+oc describe csv openshift-cert-manager.v1.7.1 -n cert-manager-operators
 ```
 
 This output shows the version of the Cert manager operator that has been successfully installed.
