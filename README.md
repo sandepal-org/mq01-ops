@@ -1305,6 +1305,8 @@ See how:
   - `targetRevision: main` identifies the branch within the repository
   - `path: environments/dev/mq01/` identifies the folder within the repository
 
+---
+
 ## Deploy `mq01-argo` to the cluster
 
 Let's deploy this ArgoCD application to the cluster. We use the `envsubst`
@@ -1331,6 +1333,8 @@ cat environments/dev/argocd/mq01.yaml
 See how `repoURL:` now identifies the Git URL locations that the ArgoCD
 application is monitoring. It's currently empty -- it will be populated by our
 pipeline in the second part of the tutorial.
+
+---
 
 ## View `mq01-argo` in ArgoCD UI
 
