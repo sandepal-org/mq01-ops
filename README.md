@@ -1319,7 +1319,8 @@ You can verify that the `envsubst` command has replaced `$GITORG`:
 cat environments/dev/argocd/mq01.yaml
 ```
 
-`repoURL:` now identifies the Git URL that the ArgoCD application will monitor.
+See how `repoURL:` now identifies the Git URL that the ArgoCD application will
+monitor.
 
 ---
 
