@@ -1316,6 +1316,8 @@ Issue the following command:
 envsubst < environments/dev/argocd/mq01.yaml | oc apply -f -
 ```
 
+envsubst < environments/dev/argocd/mq01.yaml > mq01-argocd.tmp && mv mq01-argocd.tmp environments/dev/argocd/mq01.yaml
+
 which will complete with:
 
 ```bash
