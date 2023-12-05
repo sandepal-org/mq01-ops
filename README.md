@@ -867,7 +867,7 @@ the LVM.
 Issue the following command to create the operator group:
 
 ```bash
-oc apply -f setup/lvm-operator-group.yaml
+oc apply -f setup/lvm-operatorgroup.yaml
 ```
 which will create the operator group:
 
@@ -1105,6 +1105,21 @@ which can be stored in git, with the certificate only being created when the YAM
 is deployed. For example, we might define how frequently a certificate is renewed
 and its issuer in git, but the private key and certificate are only created when
 the YAML is deployed to the cluster.
+
+We also need to define an **Operator Group** for Cert Manager which allows identifies that it can 
+generate generates required RBAC access for
+the LVM.
+
+Issue the following command to create the operator group:
+
+```bash
+oc apply -f setup/cert-manager-operatorgroup.yaml
+```
+which will create the operator group:
+
+```bash
+operatorgroup.operators.coreos.com/ceert-manager-operatorgroup created
+```
 
 We can now install the Cert Manager operator; using the same process as we used
 with ArgoCD.
