@@ -4,8 +4,9 @@ metadata:
   name: openshift-cert-manager-operator
   namespace: cert-manager-operator
 spec:
-  channel: tech-preview
+  channel: stable-v1
   installPlanApproval: Automatic
   name: openshift-cert-manager-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
+  startingCSV: cert-manager-operator.v1.13.0
