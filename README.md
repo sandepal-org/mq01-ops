@@ -503,7 +503,7 @@ CSV for ArgoCD.
 Issue the following command:
 
 ```bash
-oc get clusterserviceversion openshift-gitops-operator.v1.5.10
+oc get clusterserviceversion
 ```
 
 (Note that you may need to wait for 30 seconds before issuing the command, as it
@@ -524,7 +524,8 @@ oc describe csv openshift-gitops-operator.v1.5.10
 ```
 
 The output provides an extensive amount of information not listed here; feel
-free to examine it.
+free to examine it. Don't worry too much about the detail, you'll learn more as
+we go.
 
 ## Minor modifications to ArgoCD
 
@@ -727,8 +728,8 @@ a full production system, we might prefer to use `Manual` rather than
 Feel free to verify the MQ installation with the following
 command:
 
-(Note that you may need to wait for 30 seconds before issuing the command, as
-installation takes a little time to get started.)
+(Note that you may need to wait for a few minutes before issuing the command, as
+installation takes a little time to complete.)
 
 ```bash
 oc get clusterserviceversion
@@ -747,14 +748,14 @@ This shows the version of the MQ operator that has been successfully installed,
 along with its dependent IBM Common Services operator.
 
 Use the following command to learn more about the MQ operator.
-(Use the  version from the previous output.)
+(Use the exact version from the previous output.)
 
 ```bash
 oc describe csv ibm-mq.v2.4.1
 ```
 
-The output provides an extensive amount of information not listed
-here; feel free to examine it.
+The output provides an extensive amount of information not listed here; feel
+free to examine it.
 
 ---
 
