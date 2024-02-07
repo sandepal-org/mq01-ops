@@ -75,8 +75,11 @@ small modifications.
 
 > [!CAUTION]
 > Single Node OpenShift
+> 
 > We highlight the occasional situations in the tutorial when instructions are
 > slightly different for Single Node OpenShift.
+
+:closed_book: Single Node OpenShift warning
 
 ---
 
