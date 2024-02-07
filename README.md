@@ -357,15 +357,11 @@ which will confirm the following namespaces are created in the cluster:
 namespace/mq01-ci created
 namespace/mq01-dev created
 namespace/cert-manager-operator created
+namespace/openshift-storage created
 ```
 
 We use these namespaces to give us fine grained security control over our
-resources. We're going to use the `mq01-ci` namespace for our continuous
-integration Tekton pipelines. We're going to use the `mq01-dev` namespace for
-the `mq01` queue manager and its associated resources, such as X.509
-certificates. We'll also use a component called **Cert-manager** to automate
-the issue, renewal and revocation of X.509 certificates. We'll install it in the
-`cert-manager-operator` namespace.
+resources.
 
 ---
 
@@ -441,10 +437,10 @@ During this tutorial, we'll see how:
 - the `mq01-dev` namespace is used to store specific Kubernetes resources
   relating to a running queue manager, `mq01`.
 - the `cert-manager-operator` namespace is used to store specific Kubernetes resources
-  relating to Cert Manager.
+  relating to Cert Manager, which manages our X.509 certificates for `mq01`.
 - the `openshift-storage` namespace is used to store specific Kubernetes
   resources relating to LVM, the storage manager that we'll use to store MQ
-  messages and transactions.
+  messages and transactions for `mq01`.
 
 ---
 
