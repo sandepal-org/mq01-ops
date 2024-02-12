@@ -842,6 +842,9 @@ oc describe csv openshift-pipelines-operator-rh.v1.9.3
 
 ## Install LVM operator for storage
 
+:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
+can skip this section if you are using IBM ROKS or similar.
+
 A queue manager stores its persistent messages and transactions in its queue
 files and log files respectively. This file system provides a recoverable store
 such that when the queue manager restarts, it uses theses files to establish its
@@ -918,6 +921,9 @@ In a full production system, we might prefer to use `Manual` rather than
 
 ## Verify LVM operator
 
+:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
+can skip this section if you are using IBM ROKS or similar.
+
 Again, feel free to verify the LVM Tekton installation with the following command:
 
 ```bash
@@ -947,6 +953,9 @@ oc describe csv lvms-operator-v4.12.0 -n openshift-storage
 ---
 
 ## Creating an LVM instance
+
+:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
+can skip this section if you are using IBM ROKS or similar.
 
 Now we've installed the LVM operator, we can create an instance of an LVM
 cluster to manage our external storage -- to make it available through a storage
@@ -1063,6 +1072,10 @@ start the queue manager in the second part of this tutorial.
 ---
 
 ## Configure image registry
+
+:closed_book: You only need to patch the image registry to use local storage if
+you are using Single Node OpenShift. You can skip this section if you are using
+IBM ROKS or similar.
 
 In production system, you would configure the image registry to use separate
 persistent storage volume. However, to get going quickly, we can configure the
@@ -1370,7 +1383,7 @@ user:
 oc extract secret/openshift-gitops-cluster -n openshift-gitops --keys="admin.password" --to=-
 ```
 
-Login to ArgoCD with `admin` and `<password>`.
+Login to ArgoCD with literal `admin` and the value determined above for `<password>`.
 
 > **Note**<br>
 >
