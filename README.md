@@ -1169,7 +1169,7 @@ In a full production system, we might prefer to use `Manual` rather than
 Again, feel free to verify the Cert manager installation with the following command:
 
 ```bash
-oc get clusterserviceversion
+oc get clusterserviceversion -n cert-manager-operator
 ```
 
 to see the full set of operators we've installed.
@@ -1178,7 +1178,7 @@ to see the full set of operators we've installed.
 NAME                                     DISPLAY                                       VERSION   REPLACES                           PHASE
 ibm-common-service-operator.v3.23.8      IBM Cloud Pak foundational services           3.23.8                                       Succeeded
 ibm-mq.v2.4.4                            IBM MQ                                        2.4.4     ibm-mq.v2.4.3                      Succeeded
-openshift-cert-manager.v1.7.1            cert-manager Operator for Red Hat OpenShift   1.7.1-1                                      Succeeded
+cert-manager-operator.v1.12.1            cert-manager Operator for Red Hat OpenShift   1.12.1    cert-manager-operator.v1.12.0      Succeeded
 openshift-gitops-operator.v1.5.10        Red Hat OpenShift GitOps                      1.5.10    openshift-gitops-operator.v1.5.9   Succeeded
 openshift-pipelines-operator-rh.v1.9.3   Red Hat OpenShift Pipelines                   1.9.3                                        Succeeded
 ```
@@ -1188,7 +1188,7 @@ This output shows the version of the Cert manager operator that has been success
 Use the following command to learn more about the Cert manager operator.
 
 ```bash
-oc describe csv openshift-cert-manager.v1.7.1 -n cert-manager-operator
+oc describe csv openshift-cert-manager.v1.12.1 -n cert-manager-operator
 ```
 
 This output shows the version of the Cert manager operator that has been successfully installed.
@@ -1363,14 +1363,14 @@ https://openshift-gitops-server-openshift-gitops.apps.sno-ajo-1.snoajo1.com
 We will use this URL to log into the ArgoCD admin console to view our deployments.
 (You may need to add the hostname to your `/etc/hosts file` of your lcoal machine.)
 
-Issue the following command to determine the ArgoCD `password` for the `admin`
+Issue the following command to determine the ArgoCD `<password>` for the `admin`
 user:
 
 ```bash
 oc extract secret/openshift-gitops-cluster -n openshift-gitops --keys="admin.password" --to=-
 ```
 
-Login to ArgoCD with `admin` and `password`.
+Login to ArgoCD with `admin` and `<password>`.
 
 > **Note**<br>
 >
