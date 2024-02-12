@@ -813,7 +813,7 @@ In a full production system, we might prefer to use `Manual` rather than
 
 Again, feel free to verify the Tekton installation with the following command:
 
-(Note that you may need to wait for 30 seconds before issuing the command, as
+(Note that you may need to wait a few minutes before issuing the command, as
 installation takes a little time to get started.)
 
 ```bash
