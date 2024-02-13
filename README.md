@@ -840,6 +840,8 @@ oc describe csv openshift-pipelines-operator-rh.v1.9.3
 
 ---
 
+## Configuring external storage for Single Node OpenShift
+
 > [!WARNING]
 > Single Node OpenShift
 > :closed_book: If you are using Single Node OpenShift you will need to
