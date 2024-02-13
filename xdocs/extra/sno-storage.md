@@ -1,7 +1,7 @@
-# :closed_book: Storage for Single Node OpenShift
+# :closed_book: External storage for Single Node OpenShift
 
 External storage is only necessary if you are using Single Node OpenShift. You
-can skip this section if you are using IBM ROKS or similar.
+can skip this entire topic if you are using IBM ROKS or similar.
 
 ---
 

@@ -845,14 +845,14 @@ oc describe csv openshift-pipelines-operator-rh.v1.9.3
 
 It is best practice for MQ config, queue and log files to reside on storage that
 is external to the cluster; it makes queue managers more manageable if they are
-on storage volumes different from that used for cluster components such as
+on storage volumes different from that used for Kubernetes components such as
 `etcd`. An example might be to use higher performance disks for a high
 throughput persistent messaging system.
 
 > [!WARNING]
 > If you are using Single Node OpenShift you will need to
 > configure external storage and attach it to your cluster. The following
-> [instructions](./xdocs/extra/sno-storage.md#storage-for-single-node-openshift)
+> [instructions](./xdocs/extra/sno-storage.md#external-storage-for-single-node-openshift)
 > should be completed before continuing the tutorial.
 >
 
