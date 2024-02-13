@@ -73,8 +73,9 @@ is particularly good to help you get your SNO cluster up and running.
 If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
 small modifications.
 
-:closed_book: Remember, we'll highlight the rare occasions when the tutorial
-instructions are slightly different for Single Node OpenShift.
+### :closed_book: Single Node OpenShift
+We'll highlight the rare occasions when the tutorial instructions are
+slightly different for Single Node OpenShift.
 
 ---
 
