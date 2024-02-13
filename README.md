@@ -74,8 +74,9 @@ If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
 small modifications.
 
 ### :closed_book: Single Node OpenShift
-We'll highlight the rare occasions when the tutorial instructions are
-slightly different for Single Node OpenShift with this icon :closed_book:
+We'll highlight the rare occasions when the tutorial instructions are slightly
+different for Single Node OpenShift with this icon :closed_book:. You can omit
+these sections if you are not using SNO.
 
 ---
 
