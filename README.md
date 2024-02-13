@@ -841,10 +841,9 @@ oc describe csv openshift-pipelines-operator-rh.v1.9.3
 ---
 
 ## Configuring external storage for Single Node OpenShift
-
+:closed_book:
 > [!WARNING]
-> Single Node OpenShift
-> :closed_book: If you are using Single Node OpenShift you will need to
+> If you are using Single Node OpenShift you will need to
 > configure external storage and attach it to your cluster. The following
 > [instructions](./xdocs/extra/sno-storage.md#storage-for-single-node-openshift)
 > should be completed before continuing the tutorial.
