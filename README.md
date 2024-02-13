@@ -910,11 +910,11 @@ start the queue manager in the second part of this tutorial.
 
 ---
 
-## Configure image registry
+## :closed_book: Patch image registry
 
-:closed_book: You only need to patch the image registry to use local storage if
-you are using Single Node OpenShift. You can skip this section if you are using
-IBM ROKS or similar.
+You only need to patch the image registry to use local storage if you are using
+Single Node OpenShift. You can skip this section if you are using IBM ROKS or
+similar.
 
 In production system, you would configure the image registry to use separate
 persistent storage volume. However, to get going quickly, we can configure the
