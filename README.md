@@ -74,8 +74,8 @@ If you cannot use OpenShift, then the tutorial will work on any Kubernetes with
 small modifications.
 
 ### :closed_book: Single Node OpenShift
-We'll highlight when the tutorial instructions are different for Single Node
-OpenShift with :closed_book:. Only complete these sections if you are using SNO.
+You only need to complete sections marked with the :closed_book: icon if you are
+using SNO.
 
 ---
 
