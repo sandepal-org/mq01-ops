@@ -1,20 +1,11 @@
-# Storage for Single Node OpenShift
+# :closed_book: Storage for Single Node OpenShift
 
-:closed_book: External storage is only necessary if you are using Single Node
-OpenShift. You can skip this section if you are using IBM ROKS or similar.
-
-It is best practice for MQ config, queue and log files to reside on storage that
-is external to the cluster; it makes queue managers more manageable if they are
-on storage volumes different from that used for cluster components such as
-`etcd`. An example might be to use higher performance disks for a high
-throughput persistent messaging system.
+External storage is only necessary if you are using Single Node OpenShift. You
+can skip this section if you are using IBM ROKS or similar.
 
 ---
 
 ## Add external storage
-
-:closed_book: External storage is only necessary if you are using Single Node
-OpenShift. You can skip this section if you are using IBM ROKS or similar.
 
 In this section, we show you how to add an external disk on IBM Cloud. The
 process is similar for other cloud providers.
@@ -42,9 +33,6 @@ cluster storage.
 ---
 
 ## Add storage to virtual machine
-
-:closed_book: External storage is only necessary if you are using Single Node
-OpenShift. You can skip this section if you are using IBM ROKS or similar.
 
 The SNO cluster is running in a virtual machine inside the virtual server. We
 now attach the recently created storage attached to the virtual server to the
@@ -167,9 +155,6 @@ virsh start sno-vm
 
 ## Install LVM operator for storage
 
-:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
-can skip this section if you are using IBM ROKS or similar.
-
 A queue manager stores its persistent messages and transactions in its queue
 files and log files respectively. This file system provides a recoverable store
 such that when the queue manager restarts, it uses theses files to establish its
@@ -246,9 +231,6 @@ In a full production system, we might prefer to use `Manual` rather than
 
 ## Verify LVM operator
 
-:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
-can skip this section if you are using IBM ROKS or similar.
-
 Again, feel free to verify the LVM Tekton installation with the following command:
 
 ```bash
@@ -278,9 +260,6 @@ oc describe csv lvms-operator-v4.12.0 -n openshift-storage
 ---
 
 ## Creating an LVM instance
-
-:closed_book: LVM is only necessary if you are using Single Node OpenShift. You
-can skip this section if you are using IBM ROKS or similar.
 
 Now we've installed the LVM operator, we can create an instance of an LVM
 cluster to manage our external storage -- to make it available through a storage
