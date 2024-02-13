@@ -75,7 +75,7 @@ small modifications.
 
 ### :closed_book: Single Node OpenShift
 We'll highlight the rare occasions when the tutorial instructions are
-slightly different for Single Node OpenShift.
+slightly different for Single Node OpenShift with this icon :closed_book:
 
 ---
 
