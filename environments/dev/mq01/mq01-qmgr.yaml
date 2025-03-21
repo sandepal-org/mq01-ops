@@ -11,7 +11,7 @@ spec:
     keys:
       - name: mq01cert
         secret:
-          secretName: mq01-qmgr-cert
+          secretName: qm-secret
           items:
             - tls.key
             - tls.crt
