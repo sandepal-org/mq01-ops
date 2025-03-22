@@ -1,91 +1,50 @@
 apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
-  name: mq01
+  name: eda-qm
+  namespace: mq01-dev
 spec:
   license:
     accept: true
-    license: L-APIG-CAUEQC
-    use: Development
-  pki:
-    keys:
-      - name: mq01cert
-        secret:
-          secretName: qm-secret
-          items:
-            - tls.key
-            - tls.crt
+    license: L-QYVA-B365MB
+    use: NonProduction
   queueManager:
-    debug: false
-    image: image-registry.openshift-image-registry.svc:5000/mq01-ci/mq01:1
-    imagePullPolicy: Always
-    livenessProbe:
-      failureThreshold: 1
-      initialDelaySeconds: 90
-      periodSeconds: 10
-      successThreshold: 1
-      timeoutSeconds: 5
-    logFormat: Basic
-    metrics:
-      enabled: true
-    name: MQ01
-    mqsc:
-      - configMap:
-          name: mq01-mqsc
-          items:
-            - mq01.mqsc
-    ini:
-      - configMap:
-          name: mq01-ini
-          items:
-            - mq01.ini
-    readinessProbe:
-      failureThreshold: 1
-      initialDelaySeconds: 10
-      periodSeconds: 5
-      successThreshold: 1
-      timeoutSeconds: 3
-    resources:
-      limits:
-        cpu: "300m"
-        memory: 1Gi
-      requests:
-        cpu: "50m"
-        memory: 1Gi
-    availability:
-      type: SingleInstance
     storage:
-      defaultClass: # will use default
+      defaultClass: ocs-storagecluster-ceph-rbd
       queueManager:
         type: persistent-claim
-      persistedData:
-        enabled: true
-      recoveryLogs:
-        enabled: true
-  securityContext:
-    initVolumeAsRoot: false
+        size: 5Gi
+    name: EDA_QM
+    mqsc:
+      - configMap:
+          items:
+            - config.mqsc
+          name: eda-qm-configmap  
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+    route:
+      enabled: true
   template:
     pod:
       containers:
-        - name: qmgr
-          env:
+        - env:
             - name: MQSNOAUT
-              value: "yes"
-            - name: MQ_DEV
-              value: "true"
-            - name: MQ_CONNAUTH_USE_HTP
-              value: "true"
-            - name: MQ_ADMIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mq01-admin-password
-                  key: mq01-admin-password
-  terminationGracePeriodSeconds: 30
-  tracing:
-    agent: {}
-    collector: {}
-    enabled: false
-    namespace: ""
-  version: 9.3.2.0-r1
+              value: 'yes'
+          name: qmgr
   web:
     enabled: true
+  version: 9.4.1.0-r2
+  pki:
+    keys:
+      - name: default
+        secret:
+          items:
+            - tls.crt
+            - tls.key
+          secretName: eda-qm-secret
+    
