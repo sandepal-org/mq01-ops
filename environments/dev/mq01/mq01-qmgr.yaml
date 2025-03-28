@@ -3,6 +3,8 @@ kind: QueueManager
 metadata:
   name: eda-qm
   namespace: mq01-dev
+  labels:
+    argocd.argoproj.io/instance: mq01-argo
 spec:
   license:
     accept: true
