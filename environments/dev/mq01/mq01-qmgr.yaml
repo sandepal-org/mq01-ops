@@ -28,7 +28,7 @@ spec:
         memory: 1Gi
       requests:
         cpu: 500m
-        memory: 1Gi
+        memory: 2Gi
     route:
       enabled: true
   template:
